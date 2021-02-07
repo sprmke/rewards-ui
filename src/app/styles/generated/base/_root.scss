@@ -1,0 +1,14 @@
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
+
+html {
+	font-size: 16px;
+	line-height: 1.15px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	body {
+		padding-right: 0 !important;
+		overflow-x: hidden;
+	}
+}

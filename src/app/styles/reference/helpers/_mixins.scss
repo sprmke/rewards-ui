@@ -1,0 +1,296 @@
+// Dimension
+@mixin dimension($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+// .square {
+//   @include box(50px);
+// }
+// .rectangle {
+//   @include box(100px, 50px);
+// }
+
+
+// Center Block
+@mixin center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+// div {
+//   @include center-block;
+// }
+
+
+// Vertical centering
+@mixin center-vertically {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include prefix(transform, translate(-50%, -50%), 'webkit' 'ms');
+}
+// div {
+//   @include center-vertically;
+// }
+
+
+// Positioning
+@mixin position($position, $args) {
+  @each $o in top right bottom left {
+    $i: index($args, $o);
+    @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
+      #{$o}: nth($args, $i + 1);
+    }
+  }
+  position: $position;
+}
+@mixin relative($args: '') {
+  @include position(relative, $args);
+}
+@mixin absolute($args: '') {
+  @include position(absolute, $args);
+}
+@mixin fixed($args: '') {
+  @include position(fixed, $args);
+}
+// .menu li {
+//   @include relative;
+// }
+// .sub-menu {
+//   @include absolute(top 100% left 0);
+// }
+// .sticky-bar {
+//   @include fixed(top 0 left 0);
+// }
+
+
+// Box shadows
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+  box-shadow: $value;
+}
+// .card {
+// 	box-shadow: @include box-shadow('rgba(0, 0, 0, 0.16) 0px 1px 4px')
+// }
+
+
+// Transition
+@mixin transition($property, $duration: '1s', $timing: 'ease', $delay: '0s') {
+	-webkit-transition: $property $duration $timing $delay;
+  -moz-transition: $property $duration $timing $delay;
+  -ms-transition: $property $duration $timing $delay;
+  -o-transition: $property $duration $timing $delay;
+  transition: $property $duration $timing $delay;
+}
+// div {
+//   transition: width 2s linear 1s;
+// }
+
+
+// Opacity
+@mixin opacity($val) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity = $opacity-ie); // IE8
+}
+// .fade {
+//   @include opacity(.4);
+// }
+
+
+// Keyframes
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+// @include keyframes(animate) {
+//   50% {
+//     transform: rotate(90deg);
+//   }
+//   100% {
+//     transform: rotate(-90deg);
+//   }
+// }
+
+
+// Pseudo
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+	content: $content;
+	display: $display;
+	position: $pos;
+}
+// div::after {
+// 	@include pseudo;
+// 	top: 0; 
+//  right: 0;
+//  bottom: 0;
+//  left: 0;
+// }
+
+
+// Clearfix
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+// div {
+//   @include clearfix;
+// }
+
+
+// Z-indexes
+$z-indexes: (
+	'body1',
+	'body2',
+	'body3',
+	'header',
+	'footer',
+	'overlay',
+	'modal',
+	'popovers',
+	'loader'
+);
+@function z($element) {
+	@if index($z-indexes, $element) {
+		@return (length($z-indexes) - index($z-indexes, $element)) + 1;
+	} @else {
+			@warn 'There is no item '#{$element}' in this list; choose one of: #{$z-indexes}';
+		@return null;
+	}
+}
+// .header {
+//   z-index: z('site-header');
+// }
+
+// Border Radius
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+@mixin border-radius-top($radius) {
+  -webkit-border-top-left-radius: $radius;
+     -moz-border-top-left-radius: $radius;
+      -ms-border-top-left-radius: $radius;
+          border-top-left-radius: $radius;
+  -webkit-border-top-right-radius: $radius;
+     -moz-border-top-right-radius: $radius;
+      -ms-border-top-right-radius: $radius;
+          border-top-right-radius: $radius;
+}
+@mixin border-radius-bottom($radius) {
+  -webkit-border-bottom-left-radius: $radius;
+     -moz-border-bottom-left-radius: $radius;
+      -ms-border-bottom-left-radius: $radius;
+          border-bottom-left-radius: $radius;
+  -webkit-border-bottom-right-radius: $radius;
+     -moz-border-bottom-right-radius: $radius;
+      -ms-border-bottom-right-radius: $radius;
+          border-bottom-right-radius: $radius;
+}
+@mixin border-radius-left($radius) {
+  -webkit-border-top-left-radius: $radius;
+     -moz-border-top-left-radius: $radius;
+      -ms-border-top-left-radius: $radius;
+          border-top-left-radius: $radius;
+  -webkit-border-bottom-left-radius: $radius;
+     -moz-border-bottom-left-radius: $radius;
+      -ms-border-bottom-left-radius: $radius;
+          border-bottom-left-radius: $radius;
+}
+@mixin border-radius-right($radius) {
+  -webkit-border-top-right-radius: $radius;
+     -moz-border-top-right-radius: $radius;
+      -ms-border-top-right-radius: $radius;
+          border-top-right-radius: $radius;
+  -webkit-border-bottom-right-radius: $radius;
+     -moz-border-bottom-right-radius: $radius;
+      -ms-border-bottom-right-radius: $radius;
+          border-bottom-right-radius: $radius;
+}
+// div {
+// 	@include border-radius(1rem);
+// }
+
+
+// Background Gradient
+@mixin gradient($start-color, $end-color, $orientation: 'horizontal') {
+  background: $start-color;
+  @if $orientation == 'vertical' {
+    background: linear-gradient(to bottom, $start-color, $end-color);
+    background: -webkit-linear-gradient(top, $start-color, $end-color);
+  } @else if $orientation == 'horizontal' {
+    background: linear-gradient(to right, $start-color, $end-color);
+    background: -webkit-linear-gradient(left, $start-color, $end-color);
+  } @else {
+    background: radial-gradient(ellipse at center, $start-color, $end-color);
+    background: -webkit-radial-gradient(center, ellipse cover, $start-color, $end-color);
+  }
+}
+// div {
+//   @include gradient(#fff, #000, vertical);
+// }
+
+
+// Media queries
+$breakpoints: (
+	'xxxs': 320px,
+	'xxs': 400px,
+	'xs': 480px,
+	'sm': 768px,
+	'md': 992px,
+	'lg': 1200px,
+	'xl': 1400px,
+	'xxl': 1690px,
+	'xxxl': 1980px
+); // needs to follow your css framework breakpoints or can be declare randomly
+
+// Min and max media
+@mixin media($type, $width) {
+	@if map-has-key($breakpoints, $width) {
+		$width: map-get($breakpoints, $width);
+
+		@if $type == 'max' {
+			$width: $width - 1px;
+		}
+
+		@media screen and (#{$type}-width: $width) {
+			@content;
+		}
+	}
+	@warn 'Supported breakpoints: #{$breakpoints}';
+}
+// div {
+// 	@include media('max', 'md') {
+// 		width: '100%'
+// 	}
+// }
+
+// Only media
+@mixin media($minWidth, $maxWidth) {
+	@if map-has-key($breakpoints, $minWidth) and map-has-key($breakpoints, $maxWidth) {
+		$minWidth: map-get($breakpoints, $width);
+		$maxWidth: map-get($breakpoints, $width);
+
+		@media screen and (min-width: $minWidth) and (max-width: $maxWidth)  {
+			@content;
+		}
+	}
+	@warn 'Supported breakpoints: #{$breakpoints}';
+}
+// div {
+// 	@include media-only('sm', 'lg') {
+// 		width: '100%'
+// 	}
+// }

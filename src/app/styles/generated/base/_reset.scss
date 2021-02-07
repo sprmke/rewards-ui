@@ -1,0 +1,53 @@
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
+
+// Forms
+input, 
+textarea, 
+button {
+	outline: 0;
+	box-shadow: none !important;
+
+	&:link,
+	&:visited,
+	&:active,
+	&:focus {
+		outline: 0;
+		box-shadow: none !important;
+	}
+
+	&:-webkit-autofill,
+	&:-webkit-autofill:hover, 
+	&:-webkit-autofill:focus, 
+	&:-webkit-autofill:active  {
+		box-shadow: 0 0 0 30px $white inset !important;
+	}
+}
+
+// Links
+a {
+	outline: none;
+	text-decoration: none;
+	
+	&:link,
+	&:visited,
+	&:active,
+	&:focus {
+		text-decoration: none;
+	}
+	&:hover {
+		text-decoration: none !important;
+	}
+}
+
+// Placehodler
+::placeholder {
+	color: $shade-lightest !important;
+	opacity: 1;
+}
+:-ms-input-placeholder {
+	color: $shade-lightest !important;
+}
+::-ms-input-placeholder {
+	color: $shade-lightest !important;
+}

@@ -1,0 +1,37 @@
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
+@import '~@/app/styles/reference/variables/typography';
+
+// Body
+body {
+	font-family: $family-primary !important;
+	font-weight: $weight-normal !important;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $weight-medium !important;
+}
+h1, h2 {
+  font-weight: $weight-bold !important;
+}
+
+// Text
+strong {
+  font-weight: $weight-medium !important;
+}
+
+// Links
+a {
+	&,
+	&:link,
+	&:visited,
+	&:active,
+	&:focus {
+		transition: all 200ms ease-in-out;
+	}
+
+	&:hover {
+		opacity: 0.8;
+	}
+}
