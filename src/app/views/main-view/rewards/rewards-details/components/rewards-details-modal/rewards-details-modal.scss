@@ -1,0 +1,10 @@
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
+
+.rewards-details-modal {
+	.close {
+		svg {
+			font-size: 1.15rem;
+		}
+	}
+}

@@ -1,11 +1,15 @@
 <template lang="pug">
 	.main-view
 		//- Header
-		the-header(origin="main")
+		the-header
 
-		//- Main Content
+		//- Content
 		main.main-content
-			router-view
+			transition(name="page-fade-up" mode="out-in")
+				router-view
+
+		//- Footer
+		the-footer
 </template>
 
 <script src="./main-view.js"></script>

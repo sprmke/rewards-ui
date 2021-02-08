@@ -1,0 +1,13 @@
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
+
+form {
+	input.form-control {
+		&.error {
+			border: 1px solid $danger-light;
+		}
+	}
+	.invalid-feedback {
+		display: flex;
+	}
+}

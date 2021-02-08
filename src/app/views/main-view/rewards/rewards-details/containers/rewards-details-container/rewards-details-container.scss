@@ -1,0 +1,97 @@
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
+
+.rewards-details-container {
+	background: $primary;
+
+	@include media('max', 'sm') {
+		padding: 3.5rem 0;
+	}
+	
+	.container {
+		flex-direction: column;
+		
+		.title-container {
+			position: relative;
+
+			.btn-back {
+				position: absolute;
+				top: 0.7rem;
+				left: 0;
+				background: $shade-lighter;
+				padding: 0.25rem 1rem;
+
+				@include media('max', 'md') {
+					display: none;
+				}
+			}
+		}
+
+		.details-container {
+			overflow: hidden;
+			display: flex;
+			border-radius: 0.5rem;
+			box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+	
+			.card-body {
+				padding: 0;
+
+				@include media('max', 'md') {
+					flex-direction: column;
+				}
+
+				.left-content {
+					width: 45%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					background: $shade-lightest;
+
+					@include media('max', 'lg') {
+						width: 50%;
+					}
+
+					@include media('max', 'md') {
+						width: 100%;
+					}
+
+					.image-container {
+						width: 100%;
+					}
+				}
+		
+				.right-content {
+					width: 55%;
+					padding: 1rem 3rem 3rem 3rem;
+
+					@include media('max', 'lg') {
+						width: 50%;
+					}
+
+					@include media('max', 'md') {
+						width: 100%;
+						padding: 2rem;
+					}
+
+					@include media('max', 'sm') {
+						padding: 2rem 1.5rem;
+					}
+
+					.prize-details {
+						@include media('max', 'md') {
+							margin-top: 0 !important;
+						}
+					}
+
+					.main-btn {
+						display: inline-flex;
+
+						@include media('max', 'sm') {
+							display: flex;
+						}
+					}
+				}
+			}
+		}
+	}
+}

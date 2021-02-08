@@ -1,7 +1,11 @@
 <template lang="pug">
 	.home-container
-		//-content
-		p home-container
+		//- Hero
+		home-hero
+
+		//- Details
+		home-details
+
 </template>
 
 <script src="./home-container.js"></script>

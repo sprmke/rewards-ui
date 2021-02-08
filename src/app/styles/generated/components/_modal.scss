@@ -1,0 +1,35 @@
+.modal {
+	.modal-content {
+		border-radius: 0.75rem;
+
+		.modal-header {
+			padding: 1.5rem 2rem 1.25rem 2rem;
+		}
+
+		.modal-body {
+			padding: 2rem 2rem 1rem 2rem;
+
+			p {
+				margin: 0;
+			}
+		}
+
+		.modal-footer {
+			border: none;
+			padding: 0.25rem 2rem 1.5rem 1.75rem;
+			justify-content: flex-start;
+
+			.btn {
+				background: $shade-light;
+				border: $shade-light;
+				color: $shade-darkest;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border-radius: 2rem;
+				padding: 0.65rem 2.5rem;
+				box-shadow: none !important;
+			}
+		}
+	}
+}

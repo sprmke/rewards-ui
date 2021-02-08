@@ -268,8 +268,10 @@ $breakpoints: (
 		@media screen and (#{$type}-width: $width) {
 			@content;
 		}
+	} @else {
+		@warn 'Supported breakpoints: #{$breakpoints}';
 	}
-	@warn 'Supported breakpoints: #{$breakpoints}';
+	
 }
 // div {
 // 	@include media('max', 'md') {
@@ -278,7 +280,7 @@ $breakpoints: (
 // }
 
 // Only media
-@mixin media($minWidth, $maxWidth) {
+@mixin media-only($minWidth, $maxWidth) {
 	@if map-has-key($breakpoints, $minWidth) and map-has-key($breakpoints, $maxWidth) {
 		$minWidth: map-get($breakpoints, $width);
 		$maxWidth: map-get($breakpoints, $width);
@@ -286,8 +288,9 @@ $breakpoints: (
 		@media screen and (min-width: $minWidth) and (max-width: $maxWidth)  {
 			@content;
 		}
+	} @else {
+		@warn 'Supported breakpoints: #{$breakpoints}';
 	}
-	@warn 'Supported breakpoints: #{$breakpoints}';
 }
 // div {
 // 	@include media-only('sm', 'lg') {

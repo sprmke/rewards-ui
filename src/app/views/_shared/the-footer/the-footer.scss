@@ -1,6 +1,45 @@
-// @import '~@/app/styles/reference/helpers/mixins';
-// @import '~@/app/styles/reference/variables/colors';
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
 
-// .the-footer {
+.the-footer {
+	display: flex;
+	padding: 6rem 0;
+	background: linear-gradient(#141414, #0a0a0a);
 
-// }
+	.footer-links {
+		list-style-type: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0;
+		padding: 0;
+
+		@include media('max', 'xs') {
+			flex-direction: column;
+		}
+
+		li {
+			margin: 0 1rem;
+			position: relative;
+
+			@include media('max', 'xs') {
+				margin: 0.5rem 0;
+			}
+
+			&:not(:last-child)::after {
+				content: '|';
+				color: $white;
+				position: absolute;
+				right: -1.25rem;
+
+				@include media('max', 'xs') {
+					content: '';
+				}
+			}
+
+			a {
+				color: $white;
+			}
+		}
+	}
+}

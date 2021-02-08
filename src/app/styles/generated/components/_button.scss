@@ -1,0 +1,40 @@
+#app .btn {
+	transition: all 200ms linear;
+	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.01), 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+
+	&:hover {  
+		opacity: 0.9 !important;
+    box-shadow: 0 7px 14px rgba(50, 50, 93,  0.01), 0 4px 7px rgba(0, 0, 0, 0.1) !important;
+	}
+
+	&.main-btn {
+		background: $secondary !important;
+		border: $secondary !important;
+		color: $shade-darkest;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 2rem;
+		padding: 0.65rem 2.5rem;
+
+		&:hover,
+		&:focus,
+		&:active,
+		&:visited {
+			background: $secondary !important;
+			border: $secondary !important;
+			color: $shade-darker !important;
+		}
+
+		svg {
+			font-size: 0.65rem;
+		}
+	}
+
+	&.btn-disabled {
+		pointer-events: none;
+		color: $shade-light !important;
+		background: $shade-dark !important;
+		border: 1px solid $shade-dark !important;
+	}
+}

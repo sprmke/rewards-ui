@@ -1,6 +1,38 @@
-// @import '~@/app/styles/reference/helpers/mixins';
-// @import '~@/app/styles/reference/variables/colors';
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
 
-// .home-hero {
+.home-hero {
+	padding: 7rem 0;
+	background: $primary;
 
-// }
+	@include media('max', 'sm') {
+		padding: 5rem 0;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+
+		h1.main-header {
+			font-size: 3.5rem;
+
+			@include media('max', 'sm') {
+				font-size: 2.5rem;
+			}
+		}
+	
+		p.sub-header {
+			color: $shade-lightest;
+			font-size: 1.25rem;
+		}
+	
+		.hero-button {
+			background: $secondary-dark !important;
+			color: $white;
+		}
+
+	}
+}

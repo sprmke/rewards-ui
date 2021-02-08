@@ -4,21 +4,26 @@
 
 // Body
 body {
-	font-family: $family-primary !important;
-	font-weight: $weight-normal !important;
+	color: $shade-darker;
+	font-family: $font-family-primary !important;
+	font-weight: $font-weight-normal !important;
 }
 
 // Headings
 h1, h2, h3, h4, h5, h6 {
-  font-weight: $weight-medium !important;
+	color: $shade-darker;
+  font-weight: $font-weight-medium !important;
 }
 h1, h2 {
-  font-weight: $weight-bold !important;
+  font-weight: $font-weight-bold !important;
 }
 
 // Text
+p {
+	color: $shade-darker;
+}
 strong {
-  font-weight: $weight-medium !important;
+  font-weight: $font-weight-medium !important;
 }
 
 // Links
@@ -32,6 +37,6 @@ a {
 	}
 
 	&:hover {
-		opacity: 0.8;
+		opacity: 0.9;
 	}
 }

@@ -1,14 +1,49 @@
+// primary
+$primary: #0274BB;
+$primary-dark: #00436d;
+$primary-light: #1c96e2;
 
+// secondary
+$secondary:#FFCF0E;
+$secondary-dark: #ffa41c;
+$secondary-light:  #ffe57b;
 
-// main colors
-$dark-blue: #424D7C;
+// danger
+$danger: #f5365c;
+$danger-dark: #dc3545;
+$danger-light: #ff6a7f;
 
-// shade
+// warning
+$warning: #ff801e;
+$warning-dark: #e55e18;
+$warning-light: #ff8d45;
+
+// success
+$success: #27bf54;
+$success-dark: #0a9448;
+$success-light: #38ca71;
+
+// info
+$info: #11cdef;
+$info-dark: #00abca;
+$info-light: #5ce3fb;
+
+// shades
+$black: #000;
+$shade-darkest: #414246;
+$shade-darker: #606266;
+$shade-dark: #94979c;
+$shade: #b1b5be;
+$shade-light: #d5d7db;
+$shade-lighter: #e8e9eb;
+$shade-lightest:#f3f3f3;
 $white: #fff;
-$shade-lightest: #c6d0e7;
-$shade-lighter: #a0acc7;
-$shade-light: #79849e;
-$shade: #576073;
-$shade-dark: #373f52;
-$shade-darker: #292f3f;
-$shade-darkest: #1a1e29;
+
+// socials
+$facebook: #4267B2;
+$google: #FF5E00;
+$twitter: #00ACEE;
+$youtube: #E62117;
+
+// others
+$separator: #efefef;

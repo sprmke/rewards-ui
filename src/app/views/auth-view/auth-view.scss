@@ -1,0 +1,12 @@
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
+
+.auth-view {
+	display: flex;
+	flex-direction: column;
+
+	.auth-content {
+		background: $primary;
+		min-height: calc(100vh - 82px);
+	}
+}

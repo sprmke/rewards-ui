@@ -1,0 +1,11 @@
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
+
+.rewards-list-hero {
+	padding: 5rem 0;
+	background: $primary;
+
+	@include media('max', 'sm') {
+		padding: 3.5rem 0;
+	}
+}

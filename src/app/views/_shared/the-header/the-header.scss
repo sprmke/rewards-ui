@@ -1,6 +1,118 @@
-// @import '~@/app/styles/reference/helpers/mixins';
-// @import '~@/app/styles/reference/variables/colors';
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
+@import '~@/app/styles/reference/variables/typography';
 
-// .the-header {
+.the-header {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 1rem 2rem;
+	background: $shade-lightest;
 
-// }
+	@include media('max', 'sm') {
+		padding: 1rem;
+	}
+
+	.logo-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		a.logo-link {
+			display: flex;
+
+			img.logo-img {
+				width: 140px;
+			}
+		}
+	}
+
+	.menu-container {
+		ul.navbar-nav {
+			display: flex;
+			align-items: center;
+			flex-direction: row;
+
+			.nav-item {
+				&:not(:last-child) {
+					margin-right: 2.5rem;
+					
+					@include media('max', 'md') {
+						margin-right: 1.5rem;
+					}
+				}
+
+				&.links {
+					@include media('max', 'sm') {
+						display: none;
+					}
+				}
+
+				a.nav-link {
+					font-weight: $font-weight-medium;
+					color: $shade-darker;
+
+					&.router-link-exact-active {
+						color: $primary-light;
+
+						span {
+							color: $primary-light;
+						}
+
+						.user-image {
+							border: 1px solid $primary-light;
+						}
+					}
+				}
+				
+				.user-menu {
+					display: flex;
+					align-items: center;
+					padding: 0;
+		
+					&::after {
+						border: none !important;
+					}
+		
+					.user-image {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						border-radius: 50%;
+						background: $shade-light;
+						width: 50px;
+						height: 50px;
+						margin-right: 0.75rem;
+		
+						@include media('max', 'xs') {
+							margin-right: 0;
+						}
+		
+						&.authenticated {
+							.user-img {
+								width: 100%;
+								height: 100%;
+							}
+						}
+		
+						&.not-authenticated {
+							svg {
+								font-size: 1.5rem;
+								color: $white;
+							}
+						}
+					}
+		
+					.user-name {
+						color: $shade-darker;
+						font-weight: $font-weight-medium;
+		
+						@include media('max', 'sm') {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+}

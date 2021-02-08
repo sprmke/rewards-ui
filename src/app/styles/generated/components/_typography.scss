@@ -1,0 +1,10 @@
+
+h1.main-header {
+	color: $white;
+	font-size: 2.35rem;
+	word-break: break-word;
+
+	@include media('max', 'sm') {
+		font-size: 2rem;
+	}
+}

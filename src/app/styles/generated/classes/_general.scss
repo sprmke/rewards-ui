@@ -1,85 +1,107 @@
+
+@import '~@/app/styles/reference/variables/typography';
+
+// General
+.section {
+	padding: 4rem 0;
+
+	@include media('max', 'sm') {
+		padding: 3rem 0;
+	}
+}
+.full-height {
+	min-height: calc(100vh - 82px - 216px);
+}
+.auth-title {
+	@include media('max', 'sm') {
+		font-size: 1.5rem;
+	}
+}
+.auth-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	p, a {
+		text-align: center;
+		font-size: 0.9rem;
+	}
+
+	a {
+		@include media('max', 'xs') {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+}
+
 // Position
-.p-relative {
-	position: relative;
+$positions: relative, absolute, fixed, sticky;
+@each $position in $positions {
+  .position-#{$position} {
+		position: #{$position} !important;
+  }
 }
-.p-absolute {
-	position: absolute;
+
+// Widths and heights
+$max: 100;
+$step: 5;
+@for $i from 0 through $max {
+	$value: $step * $i;
+	.width-#{$value} {
+		width: #{$value * 1%};
+	}
 }
-.p-fixed {
-	position: fixed;
+@for $i from 0 through $max {
+	$value: $step * $i;
+	.height-#{$value} {
+		height: #{$value * 1%};
+	}
 }
-.p-sticky {
-	position: sticky;
+
+// Font Weight
+$font-weights: normal, medium, bold;
+@each $font-weight in $font-weights {
+  .font-weight-#{$font-weight} {
+		font-weight: $font-weight !important;
+  }
 }
 
 // Cursor
-.c-pointer {
-	cursor: pointer;
-}
-.c-disabled {
-	cursor: not-allowed;
-}
-.c-progress {
-	cursor: progress;
-}
-.c-none {
-	cursor: none;
+$cursors: pointer, disabled, progress, none;
+@each $cursor in $cursors {
+  .cursor-#{$cursor} {
+		cursor: $cursor !important;
+  }
 }
 
 // Overflow
-.ofw-auto {
+.overflow-auto {
 	overflow: auto;
 }
-.ofw-auto-x {
+.overflow-auto-x {
 	overflow-x: auto;
 	overflow-y: hidden;
 }
-.ofw-auto-y {
+.overflow-auto-y {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
-.ofw-scroll {
+.overflow-scroll {
 	overflow: scroll;
 }
-.ofw-scroll-x {
+.overflow-scroll-x {
 	overflow-x: scroll;
 	overflow-y: hidden;
 }
-.ofw-scroll-y {
+.overflow-scroll-y {
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
-.ofw-visible {
+.overflow-visible {
 	overflow: visible;
 }
-.ofw-hidden {
+.overflow-hidden {
 	overflow: hidden;
-}
-
-// Widths
-.w-100 {
-	width: 100%
-}
-.w-75 {
-	width: 75%
-}
-.w-50 {
-	width: 50%
-}
-.w-25 {
-	width: 25%
-}
-
-// Heights
-.h-100 {
-	height: 100%
-}
-.h-75 {
-	height: 75%
-}
-.h-50 {
-	height: 50%
-}
-.h-25 {
-	height: 25%
 }

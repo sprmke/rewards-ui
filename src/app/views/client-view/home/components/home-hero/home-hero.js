@@ -1,17 +1,14 @@
 export default {
 	name: 'HomeHero',
-	components: {},
-	directive: {},
-	filters: {},
-	mixins: [],
-	props: {},
 	data() {
 		return {
+			isAuthenticated: true
 		}
 	},
-	computed: {},
-	watch: {},
-	created() {},
-	methods: {},
-	// Libraries
+	methods: {
+		handleHeroButton() {
+			let page = this.isAuthenticated ? '/rewards' : '/auth/register';
+			this.$router.push(page);
+		}
+	}
 }
