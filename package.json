@@ -9,7 +9,8 @@
 		"test:unit": "npm run test:clear && npm run test:watch",
 		"test:clear": "vue-cli-service test:unit --clearCache",
 		"test:watch": "vue-cli-service test:unit --watch",
-		"template": "node src/generator/template-generator"
+		"template": "node src/generator/template-generator",
+		"start": "node server.js"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^1.2.32",
@@ -19,14 +20,17 @@
 		"@fortawesome/vue-fontawesome": "^2.0.0",
 		"axios": "^0.19.0",
 		"bootstrap": "^4.3.1",
+		"connect-history-api-fallback": "^1.6.0",
 		"core-js": "^2.6.5",
 		"date-fns": "^2.9.0",
 		"date-fns-tz": "^1.0.10",
+		"express": "^4.17.1",
 		"jquery": "^3.4.1",
 		"popper.js": "^1.16.1",
 		"pug": "^2.0.4",
 		"register-service-worker": "^1.6.2",
 		"secure-ls": "^1.2.6",
+		"serve-static": "^1.14.1",
 		"vue": "^2.6.10",
 		"vue-router": "^3.0.3",
 		"vue2-filters": "^0.6.0",
