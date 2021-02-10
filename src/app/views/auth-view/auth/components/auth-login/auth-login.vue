@@ -27,12 +27,17 @@
 					name="password" 
 					type="password" 
 					placeholder="Password" 
+					autocomplete="password"
 					v-model="password" 
 					:class="{'error': $v.password.$invalid && $v.password.$dirty}"
 					@input="$v.password.$touch()"
 				)
 				.invalid-feedback(v-show="!$v.password.required && $v.password.$dirty") 
 					| Password cannot be blank.
+			
+			//- Alert
+			.alert.mt-4(v-show="getAuthStatus.status !== ''" role="alert" :class="getAuthStatus.status === 'failed' ? 'alert-danger' : 'alert-success'")
+				| {{ getAuthStatus.message }}
 			
 			//- Submit Button
 			button.btn.btn-primary.main-btn.w-100.mt-4(

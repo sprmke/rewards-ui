@@ -5,7 +5,8 @@ import createPersistedState from 'vuex-persistedstate';
 import SecureLS from 'secure-ls';
 
 // Shared
-import appUser from '@/app/stores/_shared/app-user';
+import user from '@/app/stores/_shared/user';
+import auth from '@/app/stores/_shared/auth';
 
 // Setup secure ls
 const ls = new SecureLS({isCompression: false});
@@ -15,7 +16,8 @@ export default new Vuex.Store({
 	plugins: [
 		createPersistedState({
 			paths: [
-				'appUser',
+				'user',
+				'auth'
 			],
 			storage: {
 				getItem: (key) => ls.get(key),
@@ -26,6 +28,7 @@ export default new Vuex.Store({
 	],
 	modules: {
 		// Shared
-		appUser
+		user,
+		auth
 	}
 })

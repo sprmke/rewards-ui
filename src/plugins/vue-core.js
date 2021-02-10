@@ -2,10 +2,10 @@
 import Vue from 'vue';
 
 // Directives
-import Directives from '@/app/directives/directives';
+import Directives from '@/app/core/directives/directives';
 
 // Filters
-import Filters from '@/app/filters/filters';
+import Filters from '@/app/core/filters/filters';
 
 const vueCore = () => {
 	Vue.use(Filters);

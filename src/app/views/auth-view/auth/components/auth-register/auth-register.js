@@ -1,19 +1,24 @@
+// Services
+import authService from '@/app/http/services/main/auth/auth-service.js';
+
+// Mixins
+import { authMixin } from '@/app/core/mixins/modules/auth-mixin.js';
+
 // Utils
-import { vuelidateUtil } from '@/app/utils/_shared/vuelidate-util.js';
+import { vuelidateUtil } from '@/app/utils/helpers/vuelidate-util.js';
+
+// Constants
+import { STATUS } from '@/app/utils/constants/app-constants.js';
 
 export default {
 	name: 'AuthRegister',
-	data() {
-		return {
-			email: '',
-			password: '',
-			confirmPassword: '',
-			isAPILoading: false
-		}
-	},
+	mixins: [
+		authMixin
+	],
 	computed: {
 		validationRules() {
 			let fields = {
+				name: {},
 				email: {},
 				password: {},
 				confirmPassword: {}
@@ -25,11 +30,62 @@ export default {
 			fields = vuelidateUtil.setHasUpperCase(fields, 'password');
 			fields = vuelidateUtil.setHasNumber(fields, 'password');
 			fields = vuelidateUtil.setSameFieldValueValidation(fields, 'confirmPassword', 'password');
+			
 			return fields;
 		}
 	},
 	methods: {
-		onSubmit() {
+		initData() {
+			return {
+				name: '',
+				email: '',
+				password: '',
+				confirmPassword: '',
+				isAPILoading: false
+			}
+		},
+		callAPI() {
+			const userDetails = {
+				name: this.name,
+				email: this.email,
+				password: this.password
+			};
+			
+			// call register api
+			authService.putRegister(userDetails)
+				.then(res => {
+					const result = res.data;
+					const statusCode = result.status.code;
+
+					if (statusCode === STATUS.CREATED.code) {
+						// show success auth status
+						this.setAuthStatus({
+							message: 'Successfully registered!',
+							status: 'success'
+						});
+
+						// reset form fields
+						this.resetData();
+					} else {
+						if (result.errors && result.errors.length > 0) {
+							this.setAuthStatus({
+								message: result.errors[0].msg,
+								status: 'failed'
+							});
+						} else {
+							this.setAuthStatus({
+								message: 'Something went wrong!',
+								status: 'failed'
+							});
+						}
+					}
+				})
+				.catch(err => {
+					console.error('err:', err);
+				})
+				.finally(() => {
+					this.isAPILoading = false;
+				});
 		}
 	},
 	validations() {

@@ -4,6 +4,20 @@
 			//- Card header
 			h3.text-center.mb-5.auth-title Create Account
 
+			//- Name
+			.form-group
+				label(for='name') Name
+				input#name.form-control(
+					name="name" 
+					type="text"
+					placeholder="Name" 
+					v-model.trim="name" 
+					:class="{'error': !$v.name.required && $v.name.$dirty}"  
+					@input="$v.name.$touch()"
+				)
+				.invalid-feedback(v-show="!$v.name.required && $v.name.$dirty") 
+					| Name cannot be blank.
+
 			//- Email Address
 			.form-group
 				label(for='email') Email address
@@ -26,7 +40,8 @@
 				input#password.form-control(
 					name="password" 
 					type="password" 
-					placeholder="Password" 
+					placeholder="Password"
+					autocomplete="password"
 					v-model="password" 
 					:class="{'error': $v.password.$invalid && $v.password.$dirty}"
 					@input="$v.password.$touch()"
@@ -47,6 +62,7 @@
 					name="confirmPassword" 
 					type="password" 
 					placeholder="Confirm Password" 
+					autocomplete="confirmPassword"
 					v-model="confirmPassword" 
 					:class="{'error': ((confirmPassword !== password) || !$v.confirmPassword.required) && $v.confirmPassword.$dirty}" 
 					@input="$v.confirmPassword.$touch()"
@@ -56,11 +72,14 @@
 				.invalid-feedback(v-show="(confirmPassword !== password) && $v.confirmPassword.$dirty") 
 					| Password does not match.
 
+			//- Alert
+			.alert.mt-4(v-show="getAuthStatus.status !== ''" role="alert" :class="getAuthStatus.status === 'failed' ? 'alert-danger' : 'alert-success'")
+				| {{ getAuthStatus.message }}
+
 			//- Submit Button
 			button.btn.btn-primary.main-btn.w-100.mt-4(
-				type='submit' 
-				:disabled="$v.$invalid" 
-				:class="{'btn-disabled': $v.$invalid || isAPILoading, 'btn-loading': isAPILoading }"
+				type='submit'
+				:class="{'btn-disabled': isDisabled, 'btn-loading': isAPILoading }"
 			) Sign Up
 
 			//- Footer

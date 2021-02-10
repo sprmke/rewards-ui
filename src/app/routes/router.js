@@ -43,8 +43,8 @@ export default new Router({
 					component: HomeContainer,
 					meta: {
 						title: `${rootTitle} - Home`,
-						isAuthRequired: false
-
+						isAuthRequired: false,
+						isGloballyAccessible: true
 					}
 				},
 				{
@@ -53,7 +53,8 @@ export default new Router({
 					component: TermsConditionContainer,
 					meta: {
 						title: `${rootTitle} - Terms & Conditions`,
-						isAuthRequired: false
+						isAuthRequired: false,
+						isGloballyAccessible: true
 					}
 				},
 				{
@@ -62,7 +63,8 @@ export default new Router({
 					component: PrivacyPolicyContainer,
 					meta: {
 						title: `${rootTitle} - Privacy Policy`,
-						isAuthRequired: false
+						isAuthRequired: false,
+						isGloballyAccessible: true
 					}
 				}
 			]

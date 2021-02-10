@@ -1,0 +1,26 @@
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
+
+.alert {
+	color: $white !important;
+	font-size: 0.95rem !important;
+
+	// solid
+	&.alert-danger {
+		color: $danger-dark;
+		background: $danger-light;
+		border: 1px solid $danger;
+	}
+	&.alert-warning {
+		background: $warning-light;
+		border: 1px solid $warning;
+	}
+	&.alert-success {
+		background: $success-light;
+		border: 1px solid $success;
+	}
+	&.alert-info {
+		background: $info;
+		border: 1px solid $info;
+	}
+}

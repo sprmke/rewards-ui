@@ -2,10 +2,10 @@
 import axios from 'axios';
 
 // Endpoints
-import { ENDPOINTS_POST, ENDPOINTS_PUT, ENDPOINTS_GET, ENDPOINTS_DELETE, ENDPOINTS_PATCH } from '@/app/apis/main/_connection/connection-endpoints.js';
+import { ENDPOINTS_POST, ENDPOINTS_PUT, ENDPOINTS_GET, ENDPOINTS_DELETE } from '@/app/http/apis/main/_connection/connection-endpoints.js';
 
 // Interceptor
-import { apiInterceptor } from '@/app/apis/main/_connection/connection-interceptors.js';
+import { apiInterceptor } from '@/app/http/apis/main/_connection/connection-interceptors.js';
 
 // API Instance
 export const instance = axios.create({
@@ -44,6 +44,5 @@ export const ENDPOINTS = {
 	...ENDPOINTS_POST,
 	...ENDPOINTS_PUT,
 	...ENDPOINTS_GET,
-	...ENDPOINTS_DELETE,
-	...ENDPOINTS_PATCH
+	...ENDPOINTS_DELETE
 }

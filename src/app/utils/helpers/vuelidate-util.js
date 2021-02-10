@@ -1,5 +1,5 @@
 // Vuelidate validators
-import { required, email , numeric, integer,  alpha,  url,  minLength,  maxLength, minValue, maxValue, helpers, sameAs } from 'vuelidate/lib/validators';
+import { required, email , numeric, integer,  alpha,  url,  minLength,  maxLength, sameAs } from 'vuelidate/lib/validators';
 
 // Date-fns helpers
 import { formatISO, isBefore, parseISO, isDate, isAfter } from 'date-fns';

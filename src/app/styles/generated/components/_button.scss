@@ -26,6 +26,15 @@
 			color: $shade-darker !important;
 		}
 
+		&.btn-disabled {
+			color: $shade-light !important;
+			background: $shade-dark !important;
+		}
+
+		&.btn-loading {
+			background: $shade !important;
+		}
+
 		svg {
 			font-size: 0.65rem;
 		}
@@ -36,5 +45,22 @@
 		color: $shade-light !important;
 		background: $shade-dark !important;
 		border: 1px solid $shade-dark !important;
+	}
+
+	&.btn-loading {
+		background: $shade !important;
+		position: relative;
+
+		&::before {
+			content: url('~@/assets/images/_shared/loader.gif') !important;
+			position: absolute;
+			left: 0.33rem;
+			top: 0;
+			bottom: 0;
+			height: 20px;
+			width: 20px;
+			font-size: 0;
+			transform: scale(0.12);
+		}
 	}
 }
