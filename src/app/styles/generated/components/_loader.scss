@@ -1,0 +1,41 @@
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
+
+.loading {
+	position: relative;
+	min-height: 200px;
+	max-height: 100%;
+	overflow: hidden;
+
+	&::before {
+		content: url('~@/assets/images/_shared/loader.gif') !important;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transform: scale(0.225);
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: z('loader');
+  }
+
+	_:-ms-fullscreen, :root .ie11up {
+		&::before {
+			content: url('~@/assets/images/_shared/loader.gif') !important;
+		}
+	}
+    
+	&::after {
+    content: '';
+		background: $shade-lightest;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: z('loader-overlay');
+	}
+}

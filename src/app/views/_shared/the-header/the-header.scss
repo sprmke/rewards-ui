@@ -106,9 +106,26 @@
 					.user-name {
 						color: $shade-darker;
 						font-weight: $font-weight-medium;
+						text-transform: capitalize;
 		
 						@include media('max', 'sm') {
 							display: none;
+						}
+					}
+				}
+
+				.dropdown-menu {
+					top: 0.25rem !important;
+					border-radius: 6px;
+					border: none;
+					box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.02) 0px 1px 2px 0px;
+
+					a {
+						padding: 0.5rem 1.5rem;
+
+						&:active {
+							color: unset;
+							background: none;
 						}
 					}
 				}

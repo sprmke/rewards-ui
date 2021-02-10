@@ -1,56 +1,62 @@
+// Services
+import rewardService from '@/app/http/services/main/reward/reward-service.js';
+
+// Mixins
+import { rewardMixin } from '@/app/core/mixins/modules/reward-mixin.js';
+
+// Constants
+import { STATUS } from '@/app/utils/constants/app-constants.js';
+
 export default {
 	name: 'RewardsListItems',
+	mixins: [
+		rewardMixin
+	],
 	data() {
 		return {
-			prizes: [
-				{
-					id: 1,
-					name: 'Prize 1',
-					description: 'This is the prize number 1',
-					image_url: 'https://loopnewslive.blob.core.windows.net/liveimage/sites/default/files/2020-09/gsSXdOaEQE.jpg',
-					quantity: 5
-				},
-				{
-					id: 12,
-					name: 'Prize 2',
-					description: 'This is the prize number 2',
-					image_url: 'https://loopnewslive.blob.core.windows.net/liveimage/sites/default/files/2020-09/gsSXdOaEQE.jpg',
-					quantity: 3
-				},
-				{
-					id: 3,
-					name: 'Prize 3',
-					description: 'This is the prize number 3',
-					image_url: 'https://loopnewslive.blob.core.windows.net/liveimage/sites/default/files/2020-09/gsSXdOaEQE.jpg',
-					quantity: 12
-				},
-				{
-					id: 4,
-					name: 'Prize 4',
-					description: 'This is the prize number 4',
-					image_url: 'https://loopnewslive.blob.core.windows.net/liveimage/sites/default/files/2020-09/gsSXdOaEQE.jpg',
-					quantity: 7
-				},
-				{
-					id: 5,
-					name: 'Prize 5',
-					description: 'This is the prize number 5',
-					image_url: 'https://loopnewslive.blob.core.windows.net/liveimage/sites/default/files/2020-09/gsSXdOaEQE.jpg',
-					quantity: 2
-				},
-				{
-					id: 6,
-					name: 'Prize 6',
-					description: 'This is the prize number 6',
-					image_url: 'https://loopnewslive.blob.core.windows.net/liveimage/sites/default/files/2020-09/gsSXdOaEQE.jpg',
-					quantity: 15
-				},
-			]
+			isAPILoading: false,
+			rewardsList: {
+				rewards: [],
+				pagination: {
+					totalCount: 0,
+					currentPage: 1,
+					itemsPerPage: 100, // default: 6 - will update once pagination is implemented
+					pageCount: 1
+				}
+			}
 		}
 	},
+	created() {
+		this.getRewardsList(this.rewardsList.pagination);
+	},
 	methods: {
-		goToPrizePage(prizeId) {
-			this.$router.push(`/rewards/${prizeId}`);
+		getRewardsList(queryParams) {
+			// show loader
+			this.isAPILoading = true;
+
+			// call get rewards api
+			rewardService.getRewards(queryParams)
+				.then(res => {
+					const result = res.data;
+					const data = result.data ? result.data : this.rewardsList;
+					const error = result.errors ? result.errors : null;
+					const statusCode = result.status.code;
+
+					if (statusCode === STATUS.SUCCESS.code) {
+						this.rewardsList = data;
+					} else {
+						console.error('err:', error);
+					}
+				})
+				.catch(err => {
+					console.error('err:', err);
+				})
+				.finally(() => {
+					this.isAPILoading = false;
+				});
+		},
+		toToRewardDetails(rewardId) {
+			this.$router.push(`/rewards/${rewardId}`);
 		}
 	}
 }

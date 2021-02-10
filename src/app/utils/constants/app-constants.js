@@ -39,6 +39,7 @@ export const TOKEN = {
 	EXPIRY: {
 		hours: '1h',
 		seconds: 3600,
-		milliseconds: 3600000
+		milliseconds: 3600000,
+		message: 'jwt expired'
 	}
 }

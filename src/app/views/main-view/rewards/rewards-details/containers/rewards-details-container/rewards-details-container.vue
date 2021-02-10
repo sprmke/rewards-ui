@@ -1,28 +1,34 @@
 <template lang="pug">
-	.rewards-details-container.section.full-height
+	.rewards-details-container.section.full-height(v-if="reward")
 		.container
 			.title-container
 				h1.main-header.text-center.mb-5 Reward Details
-				router-link.btn-back.btn.btn-sm.mb-3(to="/rewards")
+				router-link.btn-back.btn.mb-3(to="/rewards")
 					vue-fontawesome(:icon="['fas', 'chevron-left']")
-					span.ml-2 Go back
+					span.ml-3 Rewards
 			|
-			.card.details-container
+			.card.details-container(:class="{'loading': isAPILoading}")
 				.card-body
 					.left-content
 						.image-container
-							img.card-img-top(:src="prize.image_url" :alt="`${prize.name} Image`")
+							img.card-img-top(:src="getImageUrl(reward.imageUrl)" :alt="`${reward.name} Image`")
 					.right-content
-						.prize-details.mt-4.mb-4
-							h3.prize-name.font-weight-bold {{ prize.name }}
-							p.prize-quantity.mb-4 Quantity: 
-								strong {{ prize.quantity }}
-							p.prize-description {{ prize.description }}
-						a.main-btn.btn.btn-primary.mt-4(href='javascript:void(0);' data-toggle='modal' data-target='#rewardsDetailsModal')
-							span.mr-2 Redeem
+						.reward-details.mt-4.mb-4
+							h3.reward-name.font-weight-bold {{ reward.name }}
+							p.reward-quantity.mb-5.mt-2
+								strong.mr-1 {{ reward.quantity }}
+								| left in stocks
+							p.reward-description {{ reward.description }}
+						a.main-btn.btn.btn-primary.mt-4(
+							:class="{'btn-disabled': this.isRedeemed}" 
+							href='javascript:void(0);' 
+							data-toggle='modal' 
+							data-target='#rewardsDetailsModal'
+						)
+							span.mr-2 {{ isRedeemed ? 'Item redemeed' : 'Redeem' }}
 							vue-fontawesome(:icon="['fas', 'chevron-right']")
 		|	
-		rewards-details-modal(:prize="prize" @redeemReward="redeemReward")
+		rewards-details-modal(:reward="reward" :isRedeemed="isRedeemed" @successfulRedeem="rewardRedeemed")
 					
 </template>
 

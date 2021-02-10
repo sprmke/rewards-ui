@@ -1,19 +1,30 @@
 <template lang="pug">
 	.rewards-details-modal#rewardsDetailsModal.modal.fade(ref="rewardDetailsModal" tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
 		.modal-dialog.modal-dialog-centered(role='document')
-			.modal-content
+			.modal-content(:class="{'loading': isAPILoading}")
 				.modal-header
-					h5.modal-title Redeem reward?
+					h5.modal-title {{ rewardStatus.status == 'success' ? 'Congratulations!' : 'Redeem item?' }}
 					button.close(type='button' data-dismiss='modal' aria-label='Close')
 						span(aria-hidden='true')
 							vue-fontawesome(:icon="['fas', 'times']")
 				.modal-body
-					p Are you sure you want to redeem 
-						strong {{prize.name}} 
-						| item ?
+					.image-container
+						img.reward-img(:src="getImageUrl(reward.imageUrl)" :alt="`${reward.name} Image`")
+					p.text-center(:class="{'d-none': rewardStatus.status == 'success'}") 
+						| Are you sure you want to redeem 
+						strong {{ reward.name }} 
+						| item?
+					
+					.alert.mb-0.text-center(v-show="rewardStatus.status" role="alert" :class="rewardStatus.status === 'failed' ? 'alert-danger mt-4' : 'alert-success'")
+						| {{ rewardStatus.message }}
+
 				.modal-footer
-					button.btn.btn-secondary(type='button' data-dismiss='modal') No
-					button.main-btn.btn(type='button' @click="redeemPrize") Yes
+					template(v-if="!rewardStatus.status")
+						button.btn.btn-secondary.mr-2(type='button' data-dismiss='modal') No
+						button.main-btn.btn.ml-2(type='button' @click="redeemReward") Yes
+					template(v-else)
+						button.btn.btn-secondary.mr-2(type='button' data-dismiss='modal') Got it
+						button.main-btn.btn.ml-2(type='button' @click="moreRewards") More rewards
 </template>
 
 <script src="./rewards-details-modal.js"></script>

@@ -24,7 +24,7 @@
 						aria-expanded="false" 
 						data-test="user-menu-link"
 						:class="{'router-link-exact-active': isRegisterPage}"
-						@click.prevent="handleMenuLink"
+						@click="handleMenuLink"
 					)
 						.user-image.authenticated(v-if="isAuthenticated")
 							img.user-img(
@@ -32,14 +32,15 @@
 								alt="User Image" 
 								data-test="user-menu-image"
 							)
-						.user-image.not-authenticated
+						.user-image.not-authenticated(v-else)
 							vue-fontawesome(:icon="['fas', 'user']")
 						|
-						span.user-name {{ name }}
-					.dropdown-menu.dropdown-menu-right(v-show="isMobile" aria-labelledby="userMenuLink")
-						router-link.dropdown-item(to="/") Action
-						router-link.dropdown-item(to="/") Another action
-						router-link.dropdown-item(to="/") Something else here
+						span.user-name {{ getUserName || 'Account' }}
+					.dropdown-menu.dropdown-menu-right(v-show="isMobile || isAuthenticated" aria-labelledby="userMenuLink")
+						router-link.dropdown-item(v-show="isMobile" to="/") Home
+						router-link.dropdown-item(v-show="isMobile" to="/rewards") Rewards
+						router-link.dropdown-item(v-show="isAuthenticated" to="/profile") Profile
+						a.dropdown-item(v-show="isAuthenticated" href="javascript:void(0);" @click.prevent="logout") Logout
 </template>
 
 <script src="./the-header.js"></script>

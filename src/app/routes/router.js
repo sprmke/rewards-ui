@@ -84,7 +84,7 @@ export default new Router({
 					}
 				},
 				{
-					path: '/rewards/:prizeId',
+					path: '/rewards/:rewardId',
 					name: 'RewardsDetailsContainer',
 					component: RewardsDetailsContainer,
 					meta: {
@@ -103,7 +103,7 @@ export default new Router({
 					path: '/auth',
 					name: 'AuthContainer',
 					component: AuthContainer,
-					redirect: '/auth/login',
+					redirect: '/auth/register',
 					children: [
 						{
 							path: 'login',
@@ -134,7 +134,8 @@ export default new Router({
 			component: ErrorView,
 			meta: {
 				title: `${rootTitle} - Page Not Found`,
-				isAuthRequired: false
+				isAuthRequired: false,
+				isGloballyAccessible: true
 			}
 		}
 	]

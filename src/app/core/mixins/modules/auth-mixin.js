@@ -7,6 +7,7 @@ export const authMixin = {
 	},
 	computed: {
 		...mapGetters([
+			'getAuthData',
 			'getAuthStatus'
 		]),
 		isDisabled() {

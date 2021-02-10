@@ -1,9 +1,6 @@
 // Router
 import router from '@/app/routes/router.js';
 
-// Constants
-import { TOKEN } from '@/app/utils/constants/app-constants.js';
-
 const auth = {
 	state: {
     authData: {
@@ -12,8 +9,8 @@ const auth = {
       expiresIn: null
     },
     authStatus: {
-      message: '',
-      status: ''
+      message: null,
+      status: null
     }
 	},
 	mutations: {
@@ -32,8 +29,8 @@ const auth = {
     },
     clearAuthStatus(state) {
       state.authStatus = {
-				message: '',
-				status: ''
+				message: null,
+				status: null
 			};
     }
 	},
@@ -48,13 +45,13 @@ const auth = {
 				router.push('/');
 			}
 		},
-		initLogoutTimer({ dispatch }) {
+		initLogoutTimer({ dispatch }, expiresIn) {
 			// kills the running instance of set timeout if the user logs in again.
 			clearTimeout();
 
 			setTimeout(() => {
 				dispatch('logout');
-			}, TOKEN.EXPIRY.milliseconds);
+			}, expiresIn * 1000); // 1hr
 		}
 	},
 	getters: {

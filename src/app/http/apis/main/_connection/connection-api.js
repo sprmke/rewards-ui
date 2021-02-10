@@ -9,7 +9,7 @@ import { apiInterceptor } from '@/app/http/apis/main/_connection/connection-inte
 
 // API Instance
 export const instance = axios.create({
-	baseURL: process.env.VUE_APP_BASE_URL,
+	baseURL: process.env.VUE_APP_API_URL,
 	headers: {},
 	timeout: 20000, // 20 seconds
 	validateStatus: status => {

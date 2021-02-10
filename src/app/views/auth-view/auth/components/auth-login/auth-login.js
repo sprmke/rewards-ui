@@ -1,12 +1,8 @@
-// Libraries
-import { mapMutations, mapActions } from 'vuex';
-
 // Services
 import authService from '@/app/http/services/main/auth/auth-service.js';
-import userService from '@/app/http/services/main/user/user-service.js';
 
 // Mixins
-import { authMixin } from '@/app/core/mixins/modules/auth-mixin.js';
+import { userMixin } from '@/app/core/mixins/modules/user-mixin.js';
 
 // Utils
 import { vuelidateUtil } from '@/app/utils/helpers/vuelidate-util.js';
@@ -17,30 +13,32 @@ import { STATUS } from '@/app/utils/constants/app-constants.js';
 export default {
 	name: 'AuthLogin',
 	mixins: [
-		authMixin
+		userMixin
 	],
 	computed: {
 		validationRules() {
+			// set validation fields
 			let fields = {
 				email: {},
 				password: {}
 			}
 
+			// set validation rules
 			fields = vuelidateUtil.setFieldsRequired(fields, true);
 			fields = vuelidateUtil.setEmailValidation(fields, 'email');
 			
 			return fields;
 		}
 	},
+	watch: {
+		'$route.query': {
+			immediate: true,
+			handler(query) {
+				this.referredRoute = query.from;
+			}
+		}
+	},
 	methods: {
-		...mapMutations([
-			'setAuthData',
-			'setUserData'
-		]),
-		...mapActions([
-			'logout',
-			'initLogoutTimer'
-		]),
 		initData() {
 			return {
 				email: '',
@@ -50,6 +48,7 @@ export default {
 			}
 		},
 		callAPI() {
+			// construct user details params
 			const userDetails = {
 				email: this.email,
 				password: this.password
@@ -63,12 +62,6 @@ export default {
 					const statusCode = result.status.code;
 
 					if (statusCode === STATUS.SUCCESS.code) {
-						// show success auth status
-						this.setAuthStatus({
-							message: 'Successfully login!',
-							status: 'success'
-						});
-
 						// save auth data on store
 						this.setAuthData({
 							token: data.token,
@@ -76,44 +69,8 @@ export default {
 							expiresIn: data.expiresIn
 						})
 
-						// call get user api
-						userService.getUser()
-							.then(response => {
-								// get user response details
-								const userResult = response.data;
-								const userData = userResult.data ? userResult.data : null;
-								const userStatusCode = userResult.status.code;
-
-								if (userStatusCode === STATUS.SUCCESS.code) {
-									// save user data on store
-									this.setUserData(userData.user);
-	
-									// init logout timer
-									this.initLogoutTimer();
-
-									// reset form fields
-									this.resetData();
-	
-									// redirect to referred route
-									if (this.referredRoute) {
-										this.$router.push(this.referredRoute);
-									} else {
-										this.$router.push('/');
-									}
-								} else {
-									// reset user and auth data on store
-									this.logout();
-
-									// show generic error
-									this.setAuthStatus({
-										message: 'Something went wrong!',
-										status: 'failed'
-									});
-								}
-							})
-							.catch(err => {
-								console.error('err:', err);
-							});
+						// get and save user data to store 
+						this.saveUserData(true);
 					} else {
 						this.setAuthStatus({
 							message: result.status.message || 'Something went wrong!',
@@ -127,6 +84,13 @@ export default {
 				.finally(() => {
 					this.isAPILoading = false;
 				});
+		},
+		goToRegister() {
+			// pass referred route to register
+			this.$router.push({ 
+				path: '/auth/register', 
+				query: { from: this.referredRoute }
+			});
 		}
 	},
 	validations() {

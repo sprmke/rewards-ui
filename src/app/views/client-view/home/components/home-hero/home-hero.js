@@ -1,8 +1,8 @@
 export default {
 	name: 'HomeHero',
-	data() {
-		return {
-			isAuthenticated: true
+	computed: {
+		isAuthenticated() {
+			return this.$store.getters.getAuthData.token !== null;
 		}
 	},
 	methods: {

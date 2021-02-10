@@ -2,9 +2,48 @@
 @import '~@/app/styles/reference/variables/colors';
 
 .rewards-details-modal {
-	.close {
-		svg {
-			font-size: 1.15rem;
+	.modal-header {
+		.close {
+			svg {
+				font-size: 1.15rem;
+			}
+		}
+	}
+
+	.modal-body {
+		@include media('max', 'xs') {
+			padding: 2rem 1.5rem 1rem 1.5rem;
+		}
+
+		.image-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 2rem;
+
+			img {
+				max-width: 40%;
+			}
+		}
+	}
+
+	.modal-footer {
+		margin-top: 1rem;
+		justify-content: space-between;
+
+		@include media('max', 'sm') {
+			flex-direction: column;
+			padding: 0.25rem 1.5rem 1.5rem 1.5rem;
+		}
+
+		button {
+			flex: 1;
+			margin: 0;
+
+			@include media('max', 'sm') {
+				width: 100%;
+				margin: 0 0 0.75rem 0 !important;
+			}
 		}
 	}
 }

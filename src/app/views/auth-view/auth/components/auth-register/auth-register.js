@@ -17,6 +17,7 @@ export default {
 	],
 	computed: {
 		validationRules() {
+			// set validation fields
 			let fields = {
 				name: {},
 				email: {},
@@ -24,6 +25,7 @@ export default {
 				confirmPassword: {}
 			}
 
+			// set validation rules
 			fields = vuelidateUtil.setFieldsRequired(fields, true);
 			fields = vuelidateUtil.setEmailValidation(fields, 'email');
 			fields = vuelidateUtil.setMinLengthValidation(fields, 'password', 6);
@@ -41,10 +43,12 @@ export default {
 				email: '',
 				password: '',
 				confirmPassword: '',
-				isAPILoading: false
+				isAPILoading: false,
+				referredRoute: this.$route.query.from
 			}
 		},
 		callAPI() {
+			// construct user details params
 			const userDetails = {
 				name: this.name,
 				email: this.email,
@@ -86,6 +90,13 @@ export default {
 				.finally(() => {
 					this.isAPILoading = false;
 				});
+		},
+		goToLogin() {
+			// pass referred route to login
+			this.$router.push({ 
+				path: '/auth/login', 
+				query: { from: this.referredRoute }
+			});
 		}
 	},
 	validations() {

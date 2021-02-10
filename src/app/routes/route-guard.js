@@ -11,6 +11,7 @@ export default function routeGuard() {
 		const requiredAuth = to.meta.isAuthRequired;
 		const globalRoute = to.meta.isGloballyAccessible;
 		const referrerRoute = to.fullPath ? to.fullPath : '/';
+		const isReferrerAuthPage = referrerRoute.includes('/auth');
 
 		// get page data
 		let metaTitle = '';
@@ -27,16 +28,19 @@ export default function routeGuard() {
 					metaTitle = to.meta.title;
 					next(true);
 				} else {
-					// redirect to home
-					metaTitle = `${rootTitle} - Home`;
-					next({path: '/', query: { from: referrerRoute }});
+					// redirect to login
+					metaTitle = `${rootTitle} - Login`;
+					next({path: '/auth/login', query: { from: referrerRoute }});
 				}
 			} else {
 				// if user is logged in, redirect back to authenticated pages. 
 				// prevent going back to login and register pages.
 				if (authToken) {
 					metaTitle = `${rootTitle} - Home`;
-					next({path: '/', query: { from: referrerRoute }});
+
+					if (isReferrerAuthPage) {
+						next({path: '/'});
+					}
 				} else {
 					metaTitle = to.meta.title;
 					next(true);

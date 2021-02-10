@@ -1,12 +1,30 @@
+// Libraries
+import { mapGetters } from 'vuex';
+
 export default {
 	name: 'TheHeader',
 	data() {
 		return {
-			isAuthenticated: false,
 			isMobile: false,
 			isRegisterPage: false,
-			hasUserImage: false,
-			name: 'Create Account'
+			hasUserImage: false
+		}
+	},
+	computed: {
+		...mapGetters([
+			'getUserName',
+			'getAuthData'
+		]),
+		isAuthenticated() {
+			return this.getAuthData.token !== null;
+		}
+	},
+	watch: {
+		'$route.path': {
+			immediate: true,
+			handler(url) {
+				this.isRegisterPage = url.includes('/auth');
+			}
 		}
 	},
 	mounted() {
@@ -25,16 +43,11 @@ export default {
 				}
 			}
 		},
+		logout() {
+			this.$store.dispatch('logout');
+		},
 		onWindowResize() {
 			this.isMobile = window.innerWidth < 768;
-		}
-	},
-	watch: {
-		'$route.path': {
-			immediate: true,
-			handler(url) {
-				this.isRegisterPage = url === '/auth/register';
-			}
 		}
 	}
 }

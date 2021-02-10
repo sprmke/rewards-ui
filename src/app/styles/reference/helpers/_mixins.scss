@@ -158,7 +158,8 @@ $z-indexes: (
 	'overlay',
 	'modal',
 	'popovers',
-	'loader'
+	'loader',
+	'loader-overlay'
 );
 @function z($element) {
 	@if index($z-indexes, $element) {

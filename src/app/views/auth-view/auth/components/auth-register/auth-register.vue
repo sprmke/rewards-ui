@@ -72,8 +72,8 @@
 				.invalid-feedback(v-show="(confirmPassword !== password) && $v.confirmPassword.$dirty") 
 					| Password does not match.
 
-			//- Alert
-			.alert.mt-4(v-show="getAuthStatus.status !== ''" role="alert" :class="getAuthStatus.status === 'failed' ? 'alert-danger' : 'alert-success'")
+			//- Auth status
+			.alert.mt-4(v-show="getAuthStatus.status !== null" role="alert" :class="getAuthStatus.status === 'failed' ? 'alert-danger' : 'alert-success'")
 				| {{ getAuthStatus.message }}
 
 			//- Submit Button
@@ -85,7 +85,7 @@
 			//- Footer
 			.form-group.auth-footer.mt-4
 				p.mb-0 Already have an account?
-					router-link.ml-2(to="/auth/login") Sign In
+					a.ml-2(href="javasript:void(0);" @click.prevent="goToLogin") Sign In
 </template>
 
 <script src="./auth-register.js"></script>
