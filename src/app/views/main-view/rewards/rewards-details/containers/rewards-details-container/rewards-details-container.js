@@ -100,10 +100,14 @@ export default {
 		},
 		rewardRedeemed() {
 			// get updated user data
-			this.saveUserData(false);
-
-			// refresh reward details
-			this.getRewardDetails(this.rewardId);
+			this.saveUserData(false)
+				.then(user => {
+					// refresh reward details
+					this.getRewardDetails(this.rewardId);
+				})
+				.catch(err => {
+					console.error('rewardRedeemed err:', err);
+				});
 		}
 	}
 }

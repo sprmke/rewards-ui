@@ -33,7 +33,7 @@ export const userMixin = {
 			this.isAPILoading = true;
 
 			// call get user api
-			userService.getUser()
+			return userService.getUser()
 				.then(response => {
 					// get user response details
 					const result = response.data;
@@ -58,6 +58,9 @@ export const userMixin = {
 								this.$router.push('/');
 							}
 						}
+
+						// return user data
+						return data.user;
 					} else {
 						// reset user and auth data on store
 						this.logout();
