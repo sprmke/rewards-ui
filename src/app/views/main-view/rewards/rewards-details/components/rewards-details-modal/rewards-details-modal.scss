@@ -33,7 +33,7 @@
 		justify-content: space-between;
 
 		@include media('max', 'sm') {
-			flex-direction: column;
+			flex-direction: column-reverse;
 			padding: 0.25rem 1.5rem 1.5rem 1.5rem;
 		}
 
