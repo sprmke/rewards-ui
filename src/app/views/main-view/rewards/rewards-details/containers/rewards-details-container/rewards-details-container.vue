@@ -20,12 +20,13 @@
 								| left in stocks
 							p.reward-description {{ reward.description }}
 						a.main-btn.btn.mt-4(
-							:class="{'btn-disabled': isRedeemed}" 
+							:class="{'btn-disabled': isRedeemed || isOutStock}" 
 							href='javascript:void(0);' 
 							data-toggle='modal' 
 							data-target='#rewardsDetailsModal'
 						)
-							span.mr-2 {{ isRedeemed ? 'Item redemeed' : 'Redeem' }}
+							span.mr-2(v-if="isRedeemed") Item redemeed
+							span.mr-2(v-else) {{ isOutStock ? 'Out of stock' : 'Redeem' }}
 							vue-fontawesome(:icon="['fas', 'chevron-right']")
 		|	
 		rewards-details-modal(v-if="reward" :reward="reward" :isRedeemed="isRedeemed" @successfulRedeem="rewardRedeemed")

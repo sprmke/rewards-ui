@@ -39,13 +39,6 @@ export default {
 			this.getRewardDetails(this.rewardId);
 		}
 	},
-	watch: {
-		isRedeemed(newVal) {
-			if (newVal) {
-				this.isRedeemed = newVal;
-			}
-		}
-	},
 	methods: {
 		initData() {
 			return {
@@ -53,7 +46,8 @@ export default {
 				isAPILoading: false,
 				showModal: true,
 				reward: null,
-				isRedeemed: false
+				isRedeemed: false,
+				isOutStock: false
 			}
 		},
 		getRewardDetails(rewardId) {
@@ -72,6 +66,9 @@ export default {
 					if (statusCode === STATUS.SUCCESS.code) {
 						// set reward details
 						this.reward = data.reward;
+
+						// check quantity
+						this.isOutStock = this.reward.quantity === 0;
 
 						// check reward redeem status
 						this.checkRewardStatus(this.reward);
@@ -99,6 +96,11 @@ export default {
 			});
 		},
 		rewardRedeemed() {
+			// validate reward redeem
+			if (this.isRedeemed || this.isOutStock) {
+				return;
+			}
+
 			// get updated user data
 			this.saveUserData(false)
 				.then(user => {
