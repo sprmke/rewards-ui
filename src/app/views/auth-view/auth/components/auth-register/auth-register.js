@@ -85,7 +85,7 @@ export default {
 					}
 				})
 				.catch(err => {
-					console.error('err:', err);
+					console.error('authService.putRegister err:', err);
 				})
 				.finally(() => {
 					this.isAPILoading = false;

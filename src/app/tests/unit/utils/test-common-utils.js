@@ -28,7 +28,7 @@ class TestCommonUtils {
 
 	// element visibility
 	isVisible(selector) {
-		this.expect().not.toEqual('none')
+		this.expect(selector).not.toEqual('none')
 	}
 	isHidden(selector) {
 		expect(this.wrapper.find(selector).hasStyle('display', 'none')).toBe(true)

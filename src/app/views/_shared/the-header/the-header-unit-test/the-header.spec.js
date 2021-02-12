@@ -12,11 +12,14 @@ import TheHeaderMockData from './the-header-mock-data';
 // Utils
 import TestCommonUtils from '@/app/tests/unit/utils/test-common-utils';
 
+// Store
+import store from '@/app/stores/store';
+
 const localVue = createLocalVue();
 const router = new VueRouter();
 localVue.use(VueRouter);
 
-describe('TheHeader component existence', () => {
+describe('TheHeader component', () => {
 	let wrapper, utils, sharedMD, componentMD;
 
 	beforeEach(() => {
@@ -25,16 +28,17 @@ describe('TheHeader component existence', () => {
 		componentMD = new TheHeaderMockData;
 
 		wrapper = shallowMount(TheHeader, {
+			store,
 			localVue,
 			router
 		});
 	});
 
 	it('renders without errors', () => {
-		expect(wrapper.isVueInstance()).toBeTruthy();
+		expect(wrapper).toBeTruthy();
 	});
 
 	it('should show the-header element', () => {
-		utils.domHas('.the-header');
+		utils.doesExist('.the-header');
 	});
 });

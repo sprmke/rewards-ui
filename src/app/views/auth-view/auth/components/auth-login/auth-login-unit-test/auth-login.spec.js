@@ -12,11 +12,14 @@ import AuthLoginMockData from './auth-login-mock-data';
 // Utils
 import TestCommonUtils from '@/app/tests/unit/utils/test-common-utils';
 
+// Store
+import store from '@/app/stores/store';
+
 const localVue = createLocalVue();
 const router = new VueRouter();
 localVue.use(VueRouter);
 
-describe('AuthLogin component existence', () => {
+describe('AuthLogin component', () => {
 	let wrapper, utils, sharedMD, componentMD;
 
 	beforeEach(() => {
@@ -25,16 +28,17 @@ describe('AuthLogin component existence', () => {
 		componentMD = new AuthLoginMockData;
 
 		wrapper = shallowMount(AuthLogin, {
+			store,
 			localVue,
 			router
 		});
 	});
 
 	it('renders without errors', () => {
-		expect(wrapper.isVueInstance()).toBeTruthy();
+		expect(wrapper).toBeTruthy();
 	});
 
 	it('should show auth-login element', () => {
-		utils.domHas('.auth-login');
+		utils.doesExist('.auth-login');
 	});
 });

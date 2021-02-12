@@ -44,10 +44,9 @@
 				| {{ getAuthStatus.message }}
 			
 			//- Submit Button
-			button.btn.btn-primary.main-btn.w-100.mt-4(
+			button.btn.main-btn.w-100.mt-4(
 				type='submit' 
-				:disabled="$v.$invalid" 
-				:class="{'btn-disabled': $v.$invalid || isAPILoading, 'btn-loading': isAPILoading }"
+				:class="{'btn-disabled': $v.$invalid, 'btn-loading': isAPILoading }"
 			) Sign In
 
 			//- Footer

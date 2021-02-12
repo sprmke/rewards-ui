@@ -1,7 +1,7 @@
 <template lang="pug">
 	.rewards-details-modal#rewardsDetailsModal.modal.fade(ref="rewardDetailsModal" tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
-		.modal-dialog.modal-dialog-centered(role='document')
-			.modal-content(:class="{'loading': isAPILoading}")
+		.modal-dialog.modal-dialog-centered(v-if="reward" role='document')
+			.modal-content(:class="{'loading h-300': isAPILoading}")
 				.modal-header
 					h5.modal-title {{ rewardStatus.status == 'success' ? 'Congratulations!' : 'Redeem item?' }}
 					button.close(type='button' data-dismiss='modal' aria-label='Close')
@@ -9,7 +9,7 @@
 							vue-fontawesome(:icon="['fas', 'times']")
 				.modal-body
 					.image-container
-						img.reward-img(:src="getImageUrl(reward.imageUrl)" :alt="`${reward.name} Image`")
+						img.reward-img(:src="reward.imageUrl" :alt="`${reward.name} Image`")
 					p.text-center(:class="{'d-none': rewardStatus.status == 'success'}") 
 						| Are you sure you want to redeem 
 						strong {{ reward.name }} 

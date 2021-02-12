@@ -16,7 +16,7 @@ const localVue = createLocalVue();
 const router = new VueRouter();
 localVue.use(VueRouter);
 
-describe('RewardsListContainer component existence', () => {
+describe('RewardsListContainer component', () => {
 	let wrapper, utils, sharedMD, componentMD;
 
 	beforeEach(() => {
@@ -31,10 +31,10 @@ describe('RewardsListContainer component existence', () => {
 	});
 
 	it('renders without errors', () => {
-		expect(wrapper.isVueInstance()).toBeTruthy();
+		expect(wrapper).toBeTruthy();
 	});
 
 	it('should show rewards-list-container element', () => {
-		utils.domHas('.rewards-list-container');
+		utils.doesExist('.rewards-list-container');
 	});
 });

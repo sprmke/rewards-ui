@@ -12,11 +12,14 @@ import RewardsDetailsContainerMockData from './rewards-details-container-mock-da
 // Utils
 import TestCommonUtils from '@/app/tests/unit/utils/test-common-utils';
 
+// Store
+import store from '@/app/stores/store';
+
 const localVue = createLocalVue();
 const router = new VueRouter();
 localVue.use(VueRouter);
 
-describe('RewardsDetailsContainer component existence', () => {
+describe('RewardsDetailsContainer component', () => {
 	let wrapper, utils, sharedMD, componentMD;
 
 	beforeEach(() => {
@@ -25,16 +28,17 @@ describe('RewardsDetailsContainer component existence', () => {
 		componentMD = new RewardsDetailsContainerMockData;
 
 		wrapper = shallowMount(RewardsDetailsContainer, {
+			store,
 			localVue,
 			router
 		});
 	});
 
 	it('renders without errors', () => {
-		expect(wrapper.isVueInstance()).toBeTruthy();
+		expect(wrapper).toBeTruthy();
 	});
 
 	it('should show rewards-details-container element', () => {
-		utils.domHas('.rewards-details-container');
+		utils.doesExist('.rewards-details-container');
 	});
 });

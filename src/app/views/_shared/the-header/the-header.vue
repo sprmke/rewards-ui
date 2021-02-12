@@ -4,7 +4,8 @@
 		.logo-container
 			router-link.logo-link(to="/" data-test="logo-link")
 				img.logo-img(
-					:src="require('@/assets/images/_shared/logo.png')" 
+					v-if="logo"
+					:src="logo" 
 					alt="Rewards Logo"
 					data-test="logo-image"
 				)
@@ -28,7 +29,7 @@
 					)
 						.user-image.authenticated(v-if="isAuthenticated")
 							img.user-img(
-								:src="require('@/assets/images/_shared/user.png')" 
+								:src="userImage" 
 								alt="User Image" 
 								data-test="user-menu-image"
 							)
@@ -40,6 +41,8 @@
 						router-link.dropdown-item(v-show="isMobile" to="/") Home
 						router-link.dropdown-item(v-show="isMobile" to="/rewards") Rewards
 						router-link.dropdown-item(v-show="isAuthenticated" to="/profile") Profile
+						router-link.dropdown-item(v-show="!isAuthenticated && isMobile" to="/auth/login") Login
+						router-link.dropdown-item(v-show="!isAuthenticated && isMobile" to="/auth/register") Register
 						a.dropdown-item(v-show="isAuthenticated" href="javascript:void(0);" @click.prevent="logout") Logout
 </template>
 

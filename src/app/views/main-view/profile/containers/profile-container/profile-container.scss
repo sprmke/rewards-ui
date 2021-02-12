@@ -1,0 +1,95 @@
+@import '~@/app/styles/reference/helpers/mixins';
+@import '~@/app/styles/reference/variables/colors';
+@import '~@/app/styles/reference/variables/typography';
+
+.profile-container {
+	background: $primary;
+
+	@include media('max', 'sm') {
+		padding: 3.5rem 0;
+	}
+
+	.container {
+		flex-direction: column;
+
+		.profile-content {
+			border-radius: 0.5rem;
+			box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+		
+			.card-body {
+				display: flex;
+				flex-direction: column;
+
+				.top {
+					display: flex;
+					justify-content: center;
+					padding: 0.5rem 0 2rem 0;
+					border-bottom: 1px solid $shade-lighter;
+
+					@include media('max', 'xs') {
+						flex-direction: column;
+						align-items: center;
+					}
+
+					.image-container {
+						width: 140px;
+						height: 140px;
+						margin-right: 2rem;
+
+						@include media('max', 'xs') {
+							margin-right: 0;
+						}
+					}
+
+					.user-details {
+						display: flex;
+						flex-direction: column;
+						align-items: flex-start;
+						justify-content: center;
+
+						@include media('max', 'xs') {
+							margin-top: 1.5rem;
+						}
+
+						.form-group {
+							display: flex;
+
+							@include media('max', 'xs') {
+								justify-content: center;
+								width: 100%;
+							}
+
+							p:first-child {
+								font-weight: $font-weight-medium;
+							}
+
+							&:last-child {
+								p {
+									margin: 0;
+								}
+							}
+
+							.label {
+								min-width: 60px;
+							}
+						}
+					}
+				}
+
+				.bottom {
+					.list-container {
+						display: flex;
+						justify-content: center;
+						padding: 5rem 0;
+
+						.no-rewards-container {
+							display: flex;
+							flex-direction: column;
+							max-width: 300px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

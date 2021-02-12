@@ -29,6 +29,9 @@ export const userMixin = {
 			'initLogoutTimer'
 		]),
 		saveUserData(isFromAuth) {
+			// show loader
+			this.isAPILoading = true;
+
 			// call get user api
 			userService.getUser()
 				.then(response => {
@@ -67,7 +70,10 @@ export const userMixin = {
 					}
 				})
 				.catch(err => {
-					console.error('err:', err);
+					console.error('userService.getUser err:', err);
+				})
+				.finally(() => {
+					this.isAPILoading = false;
 				});
 		}
 	}

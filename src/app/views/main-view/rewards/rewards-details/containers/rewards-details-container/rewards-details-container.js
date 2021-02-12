@@ -2,7 +2,6 @@
 import RewardsDetailsModal from '@/app/views/main-view/rewards/rewards-details/components/rewards-details-modal/rewards-details-modal.vue';
 
 // Mixins
-import { rewardMixin } from '@/app/core/mixins/modules/reward-mixin.js';
 import { userMixin } from '@/app/core/mixins/modules/user-mixin.js';
 
 // Services
@@ -14,7 +13,6 @@ import { STATUS } from '@/app/utils/constants/app-constants.js';
 export default {
 	name: 'RewardsDetailsContainer',
 	mixins: [
-		rewardMixin,
 		userMixin
 	],
 	components: {
@@ -25,6 +23,7 @@ export default {
 	},
 	beforeRouteEnter(to, from, next) {
 		next(vm => {
+			// redirect user to rewards list page if URL param rewardId is invalid
 			vm.getRewardDetails(vm.rewardId)
 				.then(res => {
 					if (res && res.name) { next(); } 
@@ -33,16 +32,9 @@ export default {
 		});
 	},
 	created() {
+		// prevent redundant API call
 		if (!this.reward) {
 			this.getRewardDetails(this.rewardId);
-		}
-	},
-	computed: {
-		isRedeemed() {
-			// check if user already redeemed the reward
-			return this.getUserData.rewards.some(reward => {
-				return reward === this.reward._id;
-			});
 		}
 	},
 	methods: {
@@ -51,7 +43,8 @@ export default {
 				rewardId: this.$route.params.rewardId,
 				isAPILoading: false,
 				showModal: true,
-				reward: null
+				reward: null,
+				isRedeemed: false
 			}
 		},
 		getRewardDetails(rewardId) {
@@ -70,20 +63,31 @@ export default {
 					if (statusCode === STATUS.SUCCESS.code) {
 						// set reward details
 						this.reward = data.reward;
+
+						// check reward redeem status
+						this.checkRewardStatus(this.reward);
 						
 						return this.reward;
 					} else {
-						console.error('err:', error);
+						// redirect user to rewards page 
+						// if reward details cannot be fetched
+						console.error('rewardService.getReward err:', error);
 						this.$router.push('/rewards');
 					}
 				})
 				.catch(err => {
-					console.error('err:', err);
+					console.error('rewardService.getReward err:', err);
 					this.$router.push('/rewards');
 				})
 				.finally(() => {
 					this.isAPILoading = false;
 				});
+		},
+		checkRewardStatus(reward) {
+			// check if reward is already redeem by the user
+			this.isRedeemed = this.getUserData.rewards.some(rewardId => {
+				return rewardId === reward._id;
+			});
 		},
 		rewardRedeemed() {
 			// get updated user data

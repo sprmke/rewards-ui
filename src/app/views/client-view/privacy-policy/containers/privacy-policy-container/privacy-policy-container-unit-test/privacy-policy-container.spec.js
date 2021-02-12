@@ -16,7 +16,7 @@ const localVue = createLocalVue();
 const router = new VueRouter();
 localVue.use(VueRouter);
 
-describe('PrivacyPolicyContainer component existence', () => {
+describe('PrivacyPolicyContainer component', () => {
 	let wrapper, utils, sharedMD, componentMD;
 
 	beforeEach(() => {
@@ -31,10 +31,10 @@ describe('PrivacyPolicyContainer component existence', () => {
 	});
 
 	it('renders without errors', () => {
-		expect(wrapper.isVueInstance()).toBeTruthy();
+		expect(wrapper).toBeTruthy();
 	});
 
 	it('should show privacy-policy-container element', () => {
-		utils.domHas('.privacy-policy-container');
+		utils.doesExist('.privacy-policy-container');
 	});
 });

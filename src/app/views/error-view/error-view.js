@@ -1,15 +1,9 @@
+// Components
+const TheHeader = () => import(/* webpackPrefetch: true, webpackChunkName: 'the-header' */ '@/app/views/_shared/the-header/the-header.vue');
+
 export default {
 	name: 'ErrorView',
-	computed: {
-		isUserLoggedIn() {
-			const token = this.$store.getters.getUserToken;
-			let redirectRoute = {name: 'Landing Page'};
-
-			if(token) {
-					redirectRoute = {name: 'Dashboard'};
-			}
-
-			return redirectRoute;
-		}
+	components: {
+		TheHeader
 	}
 }

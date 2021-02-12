@@ -16,7 +16,7 @@ const localVue = createLocalVue();
 const router = new VueRouter();
 localVue.use(VueRouter);
 
-describe('RewardsDetailsModal component existence', () => {
+describe('RewardsDetailsModal component', () => {
 	let wrapper, utils, sharedMD, componentMD;
 
 	beforeEach(() => {
@@ -31,10 +31,10 @@ describe('RewardsDetailsModal component existence', () => {
 	});
 
 	it('renders without errors', () => {
-		expect(wrapper.isVueInstance()).toBeTruthy();
+		expect(wrapper).toBeTruthy();
 	});
 
 	it('should show rewards-details-modal element', () => {
-		utils.domHas('.rewards-details-modal');
+		utils.doesExist('.rewards-details-modal');
 	});
 });

@@ -12,11 +12,14 @@ import HomeContainerMockData from './home-container-mock-data';
 // Utils
 import TestCommonUtils from '@/app/tests/unit/utils/test-common-utils';
 
+// Store
+import store from '@/app/stores/store';
+
 const localVue = createLocalVue();
 const router = new VueRouter();
 localVue.use(VueRouter);
 
-describe('HomeContainer component existence', () => {
+describe('HomeContainer component', () => {
 	let wrapper, utils, sharedMD, componentMD;
 
 	beforeEach(() => {
@@ -25,16 +28,17 @@ describe('HomeContainer component existence', () => {
 		componentMD = new HomeContainerMockData;
 
 		wrapper = shallowMount(HomeContainer, {
+			store,
 			localVue,
 			router
 		});
 	});
 
 	it('renders without errors', () => {
-		expect(wrapper.isVueInstance()).toBeTruthy();
+		expect(wrapper).toBeTruthy();
 	});
 
 	it('should show home-container element', () => {
-		utils.domHas('.home-container');
+		utils.doesExist('.home-container');
 	});
 });

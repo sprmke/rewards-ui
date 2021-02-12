@@ -16,7 +16,7 @@ const localVue = createLocalVue();
 const router = new VueRouter();
 localVue.use(VueRouter);
 
-describe('TermsConditionContainer component existence', () => {
+describe('TermsConditionContainer component', () => {
 	let wrapper, utils, sharedMD, componentMD;
 
 	beforeEach(() => {
@@ -31,10 +31,10 @@ describe('TermsConditionContainer component existence', () => {
 	});
 
 	it('renders without errors', () => {
-		expect(wrapper.isVueInstance()).toBeTruthy();
+		expect(wrapper).toBeTruthy();
 	});
 
 	it('should show terms-condition-container element', () => {
-		utils.domHas('.terms-condition-container');
+		utils.doesExist('.terms-condition-container');
 	});
 });

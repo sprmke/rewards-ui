@@ -49,6 +49,7 @@
 
 	&.btn-loading {
 		background: $shade !important;
+		border: 1px solid $shade !important;
 		position: relative;
 
 		&::before {

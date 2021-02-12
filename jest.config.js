@@ -1,33 +1,23 @@
 module.exports = {
-	moduleFileExtensions: [
-		"js", "jsx", "json", "vue"
+	"moduleFileExtensions": [
+		"js",
+		"json",
+		"vue"
 	],
-	transform: {
-		"^.+\\.vue$": "vue-jest",
-		".+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
-		"^.+\\.jsx?$": "babel-jest"
-	},
-	moduleNameMapper: {
+	"transform": {
+		".*\\.(vue)$": "vue-jest",
+		".*\\.(js)$": "babel-jest"
+	}, 
+	"moduleNameMapper": { 
 		"^@/(.*)$": "<rootDir>/src/$1",
-		"vue$": "<rootDir>/node_modules/vue/dist/vue.js"
+		"\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/assetsTransformer.js", "\\.(css|less)$": "<rootDir>/assetsTransformer.js"
 	},
-	snapshotSerializers: [
-		"jest-serializer-vue"
-	],
-	testMatch: [
-		"**/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
-	],
 	transformIgnorePatterns: [
 		"/node_modules/"]
 		,
 	testPathIgnorePatterns: [
 		"/generator/"
-	],
-	testURL: "http://localhost/",
-	watchPlugins: [
-		"jest-watch-typeahead/filename",
-		"jest-watch-typeahead/testname"
-	],
+	],	
 	setupFiles: [
 		"<rootDir>/src/app/tests/unit/config/setup-jest.js"
 	]

@@ -1,3 +1,4 @@
+// APIs
 import RewardAPI from '@/app/http/apis/main/reward/reward-api.js';
 
 export default {

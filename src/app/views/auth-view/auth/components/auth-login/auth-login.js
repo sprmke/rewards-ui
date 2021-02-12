@@ -79,7 +79,7 @@ export default {
 					}
 				})
 				.catch(err => {
-					console.error('err:', err);
+					console.error('authService.postLogin err:', err);
 				})
 				.finally(() => {
 					this.isAPILoading = false;

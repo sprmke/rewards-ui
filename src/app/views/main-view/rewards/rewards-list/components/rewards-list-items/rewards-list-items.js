@@ -1,27 +1,25 @@
 // Services
 import rewardService from '@/app/http/services/main/reward/reward-service.js';
 
-// Mixins
-import { rewardMixin } from '@/app/core/mixins/modules/reward-mixin.js';
+// Components
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // Constants
 import { STATUS } from '@/app/utils/constants/app-constants.js';
 
 export default {
 	name: 'RewardsListItems',
-	mixins: [
-		rewardMixin
-	],
+	components: {
+		'vue-fontawesome': FontAwesomeIcon
+	},
 	data() {
 		return {
 			isAPILoading: false,
 			rewardsList: {
 				rewards: [],
 				pagination: {
-					totalCount: 0,
 					currentPage: 1,
 					itemsPerPage: 100, // default: 6 - will update once pagination is implemented
-					pageCount: 1
 				}
 			}
 		}
@@ -45,11 +43,11 @@ export default {
 					if (statusCode === STATUS.SUCCESS.code) {
 						this.rewardsList = data;
 					} else {
-						console.error('err:', error);
+						console.error('rewardService.getRewards err:', error);
 					}
 				})
 				.catch(err => {
-					console.error('err:', err);
+					console.error('rewardService.getRewards err:', err);
 				})
 				.finally(() => {
 					this.isAPILoading = false;

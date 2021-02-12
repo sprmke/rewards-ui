@@ -12,11 +12,14 @@ import HomeHeroMockData from './home-hero-mock-data';
 // Utils
 import TestCommonUtils from '@/app/tests/unit/utils/test-common-utils';
 
+// Store
+import store from '@/app/stores/store';
+
 const localVue = createLocalVue();
 const router = new VueRouter();
 localVue.use(VueRouter);
 
-describe('HomeHero component existence', () => {
+describe('HomeHero component', () => {
 	let wrapper, utils, sharedMD, componentMD;
 
 	beforeEach(() => {
@@ -25,16 +28,17 @@ describe('HomeHero component existence', () => {
 		componentMD = new HomeHeroMockData;
 
 		wrapper = shallowMount(HomeHero, {
+			store,
 			localVue,
 			router
 		});
 	});
 
 	it('renders without errors', () => {
-		expect(wrapper.isVueInstance()).toBeTruthy();
+		expect(wrapper).toBeTruthy();
 	});
 
 	it('should show home-hero element', () => {
-		utils.domHas('.home-hero');
+		utils.doesExist('.home-hero');
 	});
 });

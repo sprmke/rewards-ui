@@ -77,7 +77,7 @@
 				| {{ getAuthStatus.message }}
 
 			//- Submit Button
-			button.btn.btn-primary.main-btn.w-100.mt-4(
+			button.btn.main-btn.w-100.mt-4(
 				type='submit'
 				:class="{'btn-disabled': isDisabled, 'btn-loading': isAPILoading }"
 			) Sign Up

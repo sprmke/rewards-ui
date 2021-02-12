@@ -3,11 +3,11 @@ import VueRouter from 'vue-router';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 
 // Components
-import AuthRegister from '../auth-register.vue';
+import ProfileContainer from '../profile-container.vue';
 
 // Mock Data
 import SharedMockData from '@/app/tests/unit/mocks/shared-mock-data';
-import AuthRegisterMockData from './auth-register-mock-data';
+import ProfileContainerMockData from './profile-container-mock-data';
 
 // Utils
 import TestCommonUtils from '@/app/tests/unit/utils/test-common-utils';
@@ -19,15 +19,15 @@ const localVue = createLocalVue();
 const router = new VueRouter();
 localVue.use(VueRouter);
 
-describe('AuthRegister component', () => {
+describe('ProfileContainer component', () => {
 	let wrapper, utils, sharedMD, componentMD;
 
 	beforeEach(() => {
 		utils = new TestCommonUtils(wrapper, expect);
 		sharedMD = new SharedMockData;
-		componentMD = new AuthRegisterMockData;
+		componentMD = new ProfileContainerMockData;
 
-		wrapper = shallowMount(AuthRegister, {
+		wrapper = shallowMount(ProfileContainer, {
 			store,
 			localVue,
 			router
@@ -38,7 +38,7 @@ describe('AuthRegister component', () => {
 		expect(wrapper).toBeTruthy();
 	});
 
-	it('should show auth-register element', () => {
-		utils.doesExist('.auth-register');
+	it('should show profile-container element', () => {
+		utils.doesExist('.profile-container');
 	});
 });

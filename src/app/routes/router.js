@@ -13,6 +13,7 @@ const PrivacyPolicyContainer = () => import(/*webpackChunkName: "privacy-policy-
 const MainView = () => import(/*webpackChunkName: "main-view" */ '@/app/views/main-view/main-view.vue');
 const RewardsListContainer = () => import(/*webpackChunkName: "rewards-list-container" */ '@/app/views/main-view/rewards/rewards-list/containers/rewards-list-container/rewards-list-container.vue');
 const RewardsDetailsContainer = () => import(/*webpackChunkName: "rewards-details-container" */ '@/app/views/main-view/rewards/rewards-details/containers/rewards-details-container/rewards-details-container.vue');
+const ProfileContainer = () => import(/*webpackChunkName: "profile-container" */ '@/app/views/main-view/profile/containers/profile-container/profile-container.vue');
 
 // Main View
 const AuthView = () => import(/*webpackChunkName: "auth-view" */ '@/app/views/auth-view/auth-view.vue');
@@ -91,7 +92,16 @@ export default new Router({
 						title: `${rootTitle} - Rewards Details`,
 						isAuthRequired: true
 					}
-				}
+				},
+				{
+					path: '/profile',
+					name: 'ProfileContainer',
+					component: ProfileContainer,
+					meta: {
+						title: `${rootTitle} - Profile`,
+						isAuthRequired: true
+					}
+				},
 			]
 		},
 		// auth

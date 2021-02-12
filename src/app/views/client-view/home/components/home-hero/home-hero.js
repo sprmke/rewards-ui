@@ -2,6 +2,7 @@ export default {
 	name: 'HomeHero',
 	computed: {
 		isAuthenticated() {
+			// check if user is authenticated
 			return this.$store.getters.getAuthData.token !== null;
 		}
 	},

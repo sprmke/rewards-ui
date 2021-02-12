@@ -4,28 +4,20 @@ import $ from 'jquery';
 // Services
 import rewardService from '@/app/http/services/main/reward/reward-service.js';
 
-// Mixins
-import { rewardMixin } from '@/app/core/mixins/modules/reward-mixin.js';
-
 // Constants
 import { STATUS } from '@/app/utils/constants/app-constants.js';
 
 export default {
 	name: 'RewardsDetailsModal',
-	mixins: [
-		rewardMixin
-	],
 	data() {
 		return this.initData();
 	},
 	props: {
 		reward: {
-			type: Object,
-			required: true
+			type: Object
 		},
 		isRedeemed: {
-			type: Boolean,
-			required: true
+			type: Boolean
 		}
 	},
 	methods: {
@@ -89,7 +81,7 @@ export default {
 					}
 				})
 				.catch(err => {
-					console.error('err:', err);
+					console.error('rewardService.redeemReward err:', err);
 				})
 				.finally(() => {
 					this.isAPILoading = false;
