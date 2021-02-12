@@ -25,12 +25,13 @@
 								.card-body
 									h5.card-title.text-center.mt-4.font-weight-bold {{ reward.name }}
 						.no-rewards-container(v-else)
-							h5.no-rewards.text-center.w-100.mb-4
-								span.mr-2 No rewards yet
-								vue-fontawesome(:icon="['far', 'frown']")
-							router-link.main-btn.btn(to="/rewards")
-									span.mr-2 Get rewards
-									vue-fontawesome(:icon="['fas', 'chevron-right']")
+							.box-container
+								h5.no-rewards.text-center.w-100.mb-4
+									span.mr-2 No rewards yet
+									vue-fontawesome(:icon="['far', 'frown']")
+								router-link.main-btn.btn(to="/rewards")
+										span.mr-2 Get rewards
+										vue-fontawesome(:icon="['fas', 'chevron-right']")
 </template>
 
 <script src="./profile-container.js"></script>

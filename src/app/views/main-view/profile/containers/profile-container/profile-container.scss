@@ -94,9 +94,15 @@
 
 					.no-rewards-container {
 						display: flex;
-						flex-direction: column;
-						max-width: 300px;
+						justify-content: center;
+						align-items: center;
 						padding: 5rem 0;
+
+						.box-container {
+							display: flex;
+							flex-direction: column;
+							max-width: 300px;
+						}
 					}
 				}
 			}
