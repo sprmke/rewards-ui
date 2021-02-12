@@ -6,8 +6,8 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import {{componentName}} from '../{{filename}}.vue';
 
 // Mock Data
-import SharedMockData from '@/app/tests/unit/mocks/shared-mock-data';
-import {{componentName}}MockData from './{{filename}}-mock-data';
+// import SharedMockData from '@/app/tests/unit/mocks/shared-mock-data';
+// import {{componentName}}MockData from './{{filename}}-mock-data';
 
 // Utils
 import TestCommonUtils from '@/app/tests/unit/utils/test-common-utils';
@@ -20,18 +20,19 @@ const router = new VueRouter();
 localVue.use(VueRouter);
 
 describe('{{componentName}} component', () => {
-	let wrapper, utils, sharedMD, componentMD;
+	// const sharedMD = new SharedMockData;
+	// const componentMD = new {{componentName}}MockData;
+
+	let wrapper, utils;
 
 	beforeEach(() => {
-		utils = new TestCommonUtils(wrapper, expect);
-		sharedMD = new SharedMockData;
-		componentMD = new {{componentName}}MockData;
-
 		wrapper = shallowMount({{componentName}}, {
-			store,
 			localVue,
-			router
+			router,
+			store
 		});
+
+		utils = new TestCommonUtils(wrapper, expect);
 	});
 
 	it('renders without errors', () => {

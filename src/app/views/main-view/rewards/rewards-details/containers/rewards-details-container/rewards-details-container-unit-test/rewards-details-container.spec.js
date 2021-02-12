@@ -4,10 +4,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 
 // Components
 import RewardsDetailsContainer from '../rewards-details-container.vue';
-
-// Mock Data
-import SharedMockData from '@/app/tests/unit/mocks/shared-mock-data';
-import RewardsDetailsContainerMockData from './rewards-details-container-mock-data';
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // Utils
 import TestCommonUtils from '@/app/tests/unit/utils/test-common-utils';
@@ -20,18 +17,19 @@ const router = new VueRouter();
 localVue.use(VueRouter);
 
 describe('RewardsDetailsContainer component', () => {
-	let wrapper, utils, sharedMD, componentMD;
+	let wrapper, utils;
 
 	beforeEach(() => {
-		utils = new TestCommonUtils(wrapper, expect);
-		sharedMD = new SharedMockData;
-		componentMD = new RewardsDetailsContainerMockData;
-
 		wrapper = shallowMount(RewardsDetailsContainer, {
-			store,
 			localVue,
-			router
+			router,
+			store,
+			components: {
+				'vue-fontawesome': FontAwesomeIcon
+			}
 		});
+
+		utils = new TestCommonUtils(wrapper, expect);
 	});
 
 	it('renders without errors', () => {

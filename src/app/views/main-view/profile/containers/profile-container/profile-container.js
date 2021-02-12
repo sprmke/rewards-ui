@@ -1,6 +1,3 @@
-// Components
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
 // Services
 import rewardService from '@/app/http/services/main/reward/reward-service.js';
 
@@ -12,9 +9,6 @@ const userImage = require('../../../../../../assets/images/_shared/user.png');
 
 export default {
 	name: 'ProfileContainer',
-	components: {
-		'vue-fontawesome': FontAwesomeIcon
-	},
 	data() {
 		return {
 			userImage,

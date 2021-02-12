@@ -5,10 +5,6 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 // Components
 import AuthRegister from '../auth-register.vue';
 
-// Mock Data
-import SharedMockData from '@/app/tests/unit/mocks/shared-mock-data';
-import AuthRegisterMockData from './auth-register-mock-data';
-
 // Utils
 import TestCommonUtils from '@/app/tests/unit/utils/test-common-utils';
 
@@ -20,18 +16,16 @@ const router = new VueRouter();
 localVue.use(VueRouter);
 
 describe('AuthRegister component', () => {
-	let wrapper, utils, sharedMD, componentMD;
+	let wrapper, utils;
 
 	beforeEach(() => {
-		utils = new TestCommonUtils(wrapper, expect);
-		sharedMD = new SharedMockData;
-		componentMD = new AuthRegisterMockData;
-
 		wrapper = shallowMount(AuthRegister, {
-			store,
 			localVue,
-			router
+			router,
+			store
 		});
+
+		utils = new TestCommonUtils(wrapper, expect);
 	});
 
 	it('renders without errors', () => {

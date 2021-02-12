@@ -1,18 +1,12 @@
 // Libraries
 import { mapGetters } from 'vuex';
 
-// Components
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
 // Assets
 const logo = require('../../../../assets/images/_shared/logo.png');
 const userImage = require('../../../../assets/images/_shared/user.png');
 
 export default {
 	name: 'TheHeader',
-	components: {
-		'vue-fontawesome': FontAwesomeIcon
-	},
 	data() {
 		return {
 			logo,

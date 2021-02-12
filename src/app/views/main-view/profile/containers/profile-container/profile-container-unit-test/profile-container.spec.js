@@ -4,10 +4,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 
 // Components
 import ProfileContainer from '../profile-container.vue';
-
-// Mock Data
-import SharedMockData from '@/app/tests/unit/mocks/shared-mock-data';
-import ProfileContainerMockData from './profile-container-mock-data';
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // Utils
 import TestCommonUtils from '@/app/tests/unit/utils/test-common-utils';
@@ -20,18 +17,19 @@ const router = new VueRouter();
 localVue.use(VueRouter);
 
 describe('ProfileContainer component', () => {
-	let wrapper, utils, sharedMD, componentMD;
+	let wrapper, utils;
 
 	beforeEach(() => {
-		utils = new TestCommonUtils(wrapper, expect);
-		sharedMD = new SharedMockData;
-		componentMD = new ProfileContainerMockData;
-
 		wrapper = shallowMount(ProfileContainer, {
-			store,
 			localVue,
-			router
+			router,
+			store,
+			components: {
+				'vue-fontawesome': FontAwesomeIcon
+			}
 		});
+
+		utils = new TestCommonUtils(wrapper, expect);
 	});
 
 	it('renders without errors', () => {

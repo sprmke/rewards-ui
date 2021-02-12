@@ -5,10 +5,6 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 // Components
 import HomeContainer from '../home-container.vue';
 
-// Mock Data
-import SharedMockData from '@/app/tests/unit/mocks/shared-mock-data';
-import HomeContainerMockData from './home-container-mock-data';
-
 // Utils
 import TestCommonUtils from '@/app/tests/unit/utils/test-common-utils';
 
@@ -20,18 +16,16 @@ const router = new VueRouter();
 localVue.use(VueRouter);
 
 describe('HomeContainer component', () => {
-	let wrapper, utils, sharedMD, componentMD;
+	let wrapper, utils;
 
 	beforeEach(() => {
-		utils = new TestCommonUtils(wrapper, expect);
-		sharedMD = new SharedMockData;
-		componentMD = new HomeContainerMockData;
-
 		wrapper = shallowMount(HomeContainer, {
-			store,
 			localVue,
-			router
+			router,
+			store
 		});
+
+		utils = new TestCommonUtils(wrapper, expect);
 	});
 
 	it('renders without errors', () => {
