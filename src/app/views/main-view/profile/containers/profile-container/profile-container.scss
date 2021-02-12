@@ -77,16 +77,26 @@
 				}
 
 				.bottom {
-					.list-container {
-						display: flex;
-						justify-content: center;
-						padding: 5rem 0;
+					display: flex;
+					flex-direction: column;
 
-						.no-rewards-container {
-							display: flex;
-							flex-direction: column;
-							max-width: 300px;
+					.list-title {
+						color: $shade-dark;
+					}
+
+					.list-container {
+						padding: 2rem 0 0 0;
+						
+						.card-body {
+							padding: 1.25rem 1.25rem 2rem 1.25rem;
 						}
+					}
+
+					.no-rewards-container {
+						display: flex;
+						flex-direction: column;
+						max-width: 300px;
+						padding: 5rem 0;
 					}
 				}
 			}

@@ -37,6 +37,13 @@ export default {
 			this.getRewardDetails(this.rewardId);
 		}
 	},
+	watch: {
+		isRedeemed(newVal) {
+			if (newVal) {
+				this.isRedeemed = newVal;
+			}
+		}
+	},
 	methods: {
 		initData() {
 			return {

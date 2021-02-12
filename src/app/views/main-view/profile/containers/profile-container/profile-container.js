@@ -27,16 +27,16 @@ export default {
 			return this.$store.getters.getUserData;
 		}
 	},
-	cretead() {
+	created() {
 		// get user rewards list
 		this.getUserRewards();
 	},
 	methods: {
 		getUserRewards() {
-			for (let rewardId in user.rewards) {
+			const rewards = this.user.rewards;
+			for (let rewardId in rewards) {
 				// get each reward item and add them to rewards list
-				const reward = this.getReward(rewardId);
-				this.rewardsList.push(reward);
+				this.getReward(rewards[rewardId]);
 			}
 		},
 		getReward(rewardId) {
@@ -52,7 +52,7 @@ export default {
 					const statusCode = result.status.code;
 
 					if (statusCode === STATUS.SUCCESS.code) {
-						return data.reward;
+						this.rewardsList.push(data.reward);
 					} else {
 						console.error('rewardService.getReward err:', result.status.message);
 					}
