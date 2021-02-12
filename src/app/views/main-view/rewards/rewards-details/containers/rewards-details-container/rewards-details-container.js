@@ -1,5 +1,6 @@
 // Components
 import RewardsDetailsModal from '@/app/views/main-view/rewards/rewards-details/components/rewards-details-modal/rewards-details-modal.vue';
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // Mixins
 import { userMixin } from '@/app/core/mixins/modules/user-mixin.js';
@@ -16,7 +17,8 @@ export default {
 		userMixin
 	],
 	components: {
-		RewardsDetailsModal
+		RewardsDetailsModal,
+		'vue-fontawesome': FontAwesomeIcon
 	},
 	data() {
 		return this.initData();

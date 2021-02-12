@@ -1,4 +1,4 @@
-// Libraries
+// Components
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // Services

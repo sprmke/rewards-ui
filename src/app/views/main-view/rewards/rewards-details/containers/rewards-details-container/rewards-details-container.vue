@@ -1,14 +1,14 @@
 <template lang="pug">
 	.rewards-details-container.section.full-height
-		.container(v-if="reward")
+		.container
 			.title-container
 				h1.main-header.text-center.mb-5 Reward Details
 				router-link.btn-back.btn.mb-3(to="/rewards")
 					vue-fontawesome(:icon="['fas', 'chevron-left']")
 					span.ml-3 Rewards
 			|
-			.card.details-container(:class="{'loading h-300': isAPILoading}")
-				.card-body
+			.card.details-container(:class="{'loading h-400': isAPILoading}")
+				.card-body(v-if="reward")
 					.left-content
 						.image-container
 							img.card-img-top(:src="reward.imageUrl" :alt="`${reward.name} Image`")

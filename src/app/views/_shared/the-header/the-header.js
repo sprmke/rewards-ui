@@ -1,5 +1,7 @@
 // Libraries
 import { mapGetters } from 'vuex';
+
+// Components
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // Assets

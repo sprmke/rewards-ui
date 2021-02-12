@@ -1,6 +1,9 @@
 // Libraries
 import $ from 'jquery';
 
+// Components
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
 // Services
 import rewardService from '@/app/http/services/main/reward/reward-service.js';
 
@@ -9,6 +12,9 @@ import { STATUS } from '@/app/utils/constants/app-constants.js';
 
 export default {
 	name: 'RewardsDetailsModal',
+	components: {
+		'vue-fontawesome': FontAwesomeIcon
+	},
 	data() {
 		return this.initData();
 	},
